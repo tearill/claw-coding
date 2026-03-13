@@ -2,6 +2,8 @@
 
 > 基于 roadmap.sh 和业界最佳实践整合
 
+---
+
 ## 阶段一：基础入门 (2-3 周)
 
 ### 1.1 HTML + CSS 基础
@@ -75,29 +77,59 @@
 
 ---
 
-## 阶段四：Node.js 后端 (4-5 周)
+## 阶段四：框架原理与设计 (3-4 周) 🔥
 
-### 4.1 Node.js 基础
+### 4.1 JavaScript 引擎与运行机制
+- [ ] V8 引擎原理 (编译、解释、执行)
+- [ ] 事件循环 (Event Loop) 与执行栈
+- [ ] 垃圾回收机制
+- [ ] 内存泄漏与优化
+
+### 4.2 框架核心原理
+- [ ] **虚拟 DOM**：是什么、为什么、如何工作
+- [ ] **Diff 算法**：React/Vue 如何高效更新 DOM
+- [ ] **响应式系统**：
+  - Vue 3 Proxy 响应式原理
+  - React 状态管理与更新机制
+- [ ] **组件化设计**：组件通信与生命周期
+
+### 4.3 手动实现框架 (手撕框架 🔥)
+- [ ] **实现 Virtual DOM**：理解 JSX 编译过程
+- [ ] **实现极简 React**：useState + 渲染
+- [ ] **实现极简 Vue**：响应式数据 + 模板编译
+- [ ] **理解 JSX 编译**：Babel 插件原理
+
+### 4.4 前端设计模式
+- [ ] 发布订阅模式
+- [ ] 观察者模式
+- [ ] 工厂模式
+- [ ] 装饰器模式
+
+---
+
+## 阶段五：Node.js 后端 (4-5 周)
+
+### 5.1 Node.js 基础
 - [ ] Node.js 简介与运行机制
 - [ ] 模块系统 (CommonJS / ES Modules)
 - [ ] 文件系统操作 (fs)
 - [ ] HTTP 服务器搭建
 - [ ] npm 包发布
 
-### 4.2 Express 框架
+### 5.2 Express 框架
 - [ ] Express 路由
 - [ ] 中间件 (Middleware)
 - [ ] 请求参数处理
 - [ ] 静态文件服务
 - [ ] 模板引擎 (EJS / Pug)
 
-### 4.3 数据库
+### 5.3 数据库
 - [ ] MySQL 基础与 CRUD
 - [ ] MongoDB (Mongoose)
 - [ ] Redis 缓存
 - [ ] **实践**：RESTful API 设计
 
-### 4.4 认证与安全
+### 5.4 认证与安全
 - [ ] JWT 认证
 - [ ] Cookie / Session
 - [ ] 密码加密 (bcrypt)
@@ -105,20 +137,76 @@
 
 ---
 
-## 阶段五：全栈实战 (4-6 周)
+## 阶段六：构建工具与工程化 (3-4 周) 🔥
 
-### 5.1 项目实战
+### 6.1 构建工具原理
+- [ ] **Bundleless vs Bundled**：理解构建目的
+- [ ] **Webpack**：
+  - 核心概念 (Entry/Output/Loader/Plugin)
+  - 热更新 (HMR) 原理
+  - 代码分割 (Code Splitting)
+  - Tree Shaking 原理
+- [ ] **Vite**：
+  - Dev Server原理 (ESM + 原生 ESM)
+  - Rollup 构建
+  - 为什么 Vite 这么快
+
+### 6.2 编译与转译
+- [ ] **Babel**：JavaScript 编译器
+  - 插件与预设
+  - AST 抽象语法树基础
+- [ ] **TypeScript** 入门：
+  - 类型系统
+  - 泛型
+  - 类型守卫
+
+### 6.3 性能优化
+- [ ] 性能指标 (LCP/FID/CLS)
+- [ ] 代码分割与懒加载
+- [ ] 缓存策略
+- [ ] 首屏渲染优化 (SSR/SSG)
+
+### 6.4 测试
+- [ ] 单元测试 (Jest/Vitest)
+- [ ] E2E 测试 (Playwright/Cypress)
+- [ ] 覆盖率
+
+---
+
+## 阶段七：DevOps 与 CI/CD (2-3 周) 🔥
+
+### 7.1 持续集成/持续部署
+- [ ] CI/CD 概念与流程
+- [ ] **GitHub Actions**：
+  - Workflow 配置
+  - 触发条件
+  - 部署到 Vercel/Netlify
+- [ ] **Docker** 入门：
+  - 镜像与容器
+  - Dockerfile 编写
+  - Docker Compose
+
+### 7.2 部署与监控
+- [ ] 云服务器基础 (阿里云/腾讯云)
+- [ ] Nginx 配置
+- [ ] PM2 进程管理
+- [ ] 日志与监控
+
+### 7.3 工程化最佳实践
+- [ ] Monorepo 架构 (pnpm workspaces / Turborepo)
+- [ ] 代码规范 (ESLint + Prettier + Husky)
+- [ ] Git 工作流 (Git Flow / trunk-based)
+
+---
+
+## 阶段八：全栈实战 (4-6 周)
+
+### 8.1 项目实战
 - [ ] 博客系统 (React + Express + MongoDB)
 - [ ] 任务管理工具
 - [ ] 电商小程序 (可选)
 
-### 5.2 工程化
-- [ ] Webpack / Vite 构建工具
-- [ ] ESLint 代码规范
-- [ ] CI/CD 基础 (GitHub Actions)
-- [ ] Docker 入门
-
-### 5.3 AI Coding 实践
+### 8.2 AI Coding 实践
 - [ ] Cursor / Trae 使用技巧
 - [ ] AI 辅助编程工作流
 - [ ] 代码审查与优化
@@ -131,10 +219,13 @@
 |------|------|
 | HTML/CSS | MDN Web Docs |
 | JavaScript | 《JavaScript 高级程序设计》|
+| JavaScript 原理 | 《你不知道的 JavaScript》|
 | React | React 官方文档 |
+| React 原理 | React 源码解析 |
 | Vue | Vue 3 官方文档 |
+| Vue 原理 | Vue 3 设计与实现 |
+| 构建工具 |Webpack/Vite 官方文档 |
 | Node.js | 《Node.js 实战》|
-| Express | Express 官方文档 |
 | 综合 | roadmap.sh |
 
 ---
@@ -148,7 +239,18 @@
 | 4-5 | 天气查询应用 |
 | 7-9 | 博客前台 |
 | 10-13 | RESTful API |
-| 14-18 | 全栈博客系统 |
+| 14-17 | 框架原理 (手撕框架) |
+| 18-20 | 构建工具与工程化 |
+| 21-23 | DevOps 实践 |
+| 24-28 | 全栈博客系统 + 部署 |
+
+---
+
+## 重点标记说明
+
+- 🔥 **阶段四 (框架原理)**：理解框架底层，手撕简化版框架
+- 🔥 **阶段六 (构建工具)**：掌握 Webpack/Vite 原理
+- 🔥 **阶段七 (CI/CD)**：工程化最后一环
 
 ---
 
