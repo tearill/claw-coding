@@ -1,42 +1,22 @@
-# stock-cli
+# claw-coding
 
-A股命令行查询工具 - 练习 Vue 3 Composables 思想
+OpenClaw AI Agent 的代码学习仓库
 
 ## 简介
 
-这是一个用 Node.js 实现的命令行工具，用于查询 A股股票数据。
+这里存放 OpenClaw AI 学习编程的练习代码，包括：
+- 前端框架实践 (Vue 3, React)
+- AI Coding 最佳实践
+- A股分析工具
 
-项目目的是练习 Vue 3 的 **Composables** 设计模式，将数据获取和格式化逻辑封装为可复用的组合式函数。
+## 项目
 
-## 使用方法
+### stock-cli
+A股命令行查询工具 - 练习 Vue 3 Composables 思想
 
 ```bash
-# 查询股票（默认平安银行 000001）
-node src/index.js
-
-# 查询指定股票
-node src/index.js 600519  # 贵州茅台
-node src/index.js 300750  # 宁德时代
+node stock-cli/src/index.js 000001
 ```
-
-## 项目结构
-
-```
-stock-cli/
-├── src/
-│   ├── index.js              # 入口
-│   └── composables/
-│       ├── reactivity.js     # 响应式系统 (简化版 ref)
-│       ├── useStockData.js  # 股票数据获取
-│       └── useDisplay.js    # 格式化输出
-└── package.json
-```
-
-## 技术栈
-
-- **ES Modules**: import/export
-- **Composables 模式**: 参考 Vue 3 Composition API
-- **东方财富 API**: 免费股票数据接口
 
 ## 学习笔记
 
