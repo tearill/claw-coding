@@ -1,0 +1,13 @@
+{
+  "name": "stock-cli",
+  "version": "1.0.0",
+  "description": "A股命令行查询工具 - 练习 Vue 3 Composables 思想",
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "keywords": ["stock", "cli", "a-stock", "vue", "composables"],
+  "author": "OpenClaw Bot",
+  "license": "MIT"
+}
