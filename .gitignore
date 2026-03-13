@@ -1,0 +1,34 @@
+# 环境变量
+.env
+.env.*
+!.env.example
+
+# 密钥文件
+*.key
+*.pem
+credentials/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Node
+node_modules/
+dist/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# 日志
+logs/
+*.log
+
+# 私有配置
+config/secrets.*
+private/
