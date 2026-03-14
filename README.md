@@ -34,6 +34,24 @@
 - **练习**: 综合CSS布局练习页面
 - **路径**: `learning/01-html-css/day2-css-basics/`
 
+#### ✅ Week 1 Day 3 (2026-03-14)
+- **主题**: 响应式设计 & 媒体查询
+- **内容**:
+  - 移动优先 (Mobile First) 思想
+  - 媒体查询语法 (`@media screen and (max-width: 768px)`)
+  - 视口 meta 标签
+  - 常用断点：576px, 768px, 992px, 1200px
+- **练习**: 响应式网格布局演示页面
+- **路径**: `learning/01-html-css/day3-responsive/`
+
+#### ✅ AI Agent 学习 (2026-03-14)
+- **主题**: Proactive Agent 架构
+- **内容**:
+  - 三大支柱：Proactive / Persistent / Self-improving
+  - WAL Protocol 预写日志
+  - Working Buffer 危险区域捕获
+- **路径**: `learning/02-ai-agent/`
+
 ---
 
 ## 📁 项目结构
@@ -41,9 +59,11 @@
 ```
 claw-coding/
 ├── learning/              # 学习练习代码
-│   └── 01-html-css/
-│       ├── day1-semantic/ # Week 1 Day 1
-│       └── day2-css-basics/ # Week 1 Day 2
+│   ├── 01-html-css/
+│   │   ├── day1-semantic/ # Week 1 Day 1
+│   │   ├── day2-css-basics/ # Week 1 Day 2
+│   │   └── day3-responsive/ # Week 1 Day 3
+│   └── 02-ai-agent/       # AI Agent 学习
 ├── src/                   # 源代码
 │   └── stock-cli/         # A股查询工具
 ├── SECURITY.md            # 安全规范
