@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript 基础练习 - Day 1</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+
+        h1 {
+            color: #1e3c72;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #2a5298;
+        }
+
+        .section h2 {
+            color: #1e3c72;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+
+        code {
+            background: #282c34;
+            color: #abb2bf;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Fira Code', 'Consolas', monospace;
+            font-size: 0.9em;
+        }
+
+        pre {
+            background: #282c34;
+            color: #abb2bf;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 10px 0;
+        }
+
+        pre code {
+            background: none;
+            padding: 0;
+            color: #abb2bf;
+        }
+
+        .output {
+            background: #1e3c72;
+            color: #98c379;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Fira Code', monospace;
+            margin: 10px 0;
+        }
+
+        .tip {
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .tip strong {
+            color: #856404;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background: #2a5298;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .highlight {
+            background: #e7f3ff;
+            padding: 3px 8px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🐈‍⬛ JavaScript 基础 Day 1</h1>
+        <p class="subtitle">变量、数据类型、运算符</p>
+
+        <div class="section">
+            <h2>📚 变量声明：var / let / const</h2>
+            <table>
+                <tr>
+                    <th>关键字</th>
+                    <th>作用域</th>
+                    <th>可重新赋值</th>
+                    <th>推荐</th>
+                </tr>
+                <tr>
+                    <td><code>var</code></td>
+                    <td>函数作用域</td>
+                    <td>✅</td>
+                    <td>❌ 不推荐</td>
+                </tr>
+                <tr>
+                    <td><code>let</code></td>
+                    <td>块级作用域</td>
+                    <td>✅</td>
+                    <td>✅ 变量</td>
+                </tr>
+                <tr>
+                    <td><code>const</code></td>
+                    <td>块级作用域</td>
+                    <td>❌</td>
+                    <td>✅ 常量</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>📊 数据类型</h2>
+            <p><strong>原始类型 (7种)：</strong></p>
+            <ul>
+                <li><code>string</code> - 字符串</li>
+                <li><code>number</code> - 数字（包括整数和浮点数）</li>
+                <li><code>boolean</code> - 布尔值 true/false</li>
+                <li><code>null</code> - 空值</li>
+                <li><code>undefined</code> - 未定义</li>
+                <li><code>symbol</code> - 符号（ES6）</li>
+                <li><code>bigint</code> - 大整数（ES2020）</li>
+            </ul>
+            <p style="margin-top: 15px;"><strong>引用类型：</strong></p>
+            <ul>
+                <li><code>object</code> - 对象（包括数组、函数）</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>🔄 类型转换</h2>
+            <pre><code>// 转为字符串
+String(123)      // "123"
+(123).toString() // "123"
+123 + ""         // "123"
+
+// 转为数字
+Number("123")    // 123
+parseInt("123")  // 123
+parseFloat("3.14") // 3.14
+
+// 转为布尔值
+Boolean(1)       // true
+Boolean(0)       // false
+!!123            // true</code></pre>
+        </div>
+
+        <div class="section">
+            <h2>⚠️ 重要：== vs ===</h2>
+            <pre><code>// 记住：永远使用严格相等 ===
+5 == "5"   // true  （自动转换类型）
+5 === "5"  // false （不转换类型）
+
+// 对象比较
+{} === {}   // false （引用不同）
+[] === []   // false</code></pre>
+        </div>
+
+        <div class="tip">
+            <strong>💡 最佳实践：</strong>
+            <ul>
+                <li>优先使用 <code>const</code>，只有需要重新赋值时用 <code>let</code></li>
+                <li>永远不要用 <code>var</code></li>
+                <li>比较时使用 <code>===</code> 而非 <code>==</code></li>
+                <li>使用 <code>typeof</code> 检查类型，但注意 <code>null</code> 返回 <code>"object"</code></li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>🧮 练习输出结果</h2>
+            <div class="output" id="output"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // 捕获 console.log 输出到页面
+        const output = document.getElementById('output');
+        const originalLog = console.log;
+        console.log = function(...args) {
+            originalLog.apply(console, args);
+            output.innerHTML += args.join(' ') + '\n';
+        };
+
+        // 重新执行脚本
+        output.innerHTML = '=== JavaScript 基础输出 ===\n\n';
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -7,7 +7,7 @@
 | 周期 | 阶段 | 状态 |
 |------|------|------|
 | Week 1 | HTML & CSS 基础 | 🔄 进行中 |
-| Week 2 | JavaScript 基础 | ⏳ |
+| Week 2 | JavaScript 基础 | 🔄 进行中 |
 | Week 3 | TypeScript 入门 | ⏳ |
 | Week 4 | 浏览器原理与网络 | ⏳ |
 | Week 5-6 | Vue 3 核心与生态 | ⏳ |
@@ -43,6 +43,16 @@
   - 常用断点：576px, 768px, 992px, 1200px
 - **练习**: 响应式网格布局演示页面
 - **路径**: `learning/01-html-css/day3-responsive/`
+
+#### ✅ Week 2 Day 1 (2026-03-15)
+- **主题**: JavaScript 基础 - 变量、数据类型、运算符
+- **内容**:
+  - var / let / const 的区别和使用场景
+  - JavaScript 数据类型系统（7种原始类型 + 引用类型）
+  - 运算符：算术、比较、逻辑、三元
+  - 类型转换机制
+- **练习**: 变量数据类型演示、简易计算器函数
+- **路径**: `learning/02-javascript/day1-basics/`
 
 #### ✅ AI Agent 学习 (2026-03-14)
 - **主题**: Proactive Agent 架构
