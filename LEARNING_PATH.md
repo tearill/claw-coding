@@ -213,6 +213,19 @@
 
 ---
 
+## 额外学习：AI Agent 开发
+
+### Proactive Agent 架构
+- [x] Proactive / Persistent / Self-improving 三大支柱
+- [x] WAL Protocol 预写日志协议
+- [x] Working Buffer Protocol 工作流程
+- [x] Compaction Recovery 压缩恢复
+- [x] Self-Improvement Guardrails 安全护栏
+- [x] Security Hardening 安全加固
+- [ ] 深入实践：在项目中应用 Proactive Agent 架构
+
+---
+
 ## 学习资源推荐
 
 | 类别 | 资源 |

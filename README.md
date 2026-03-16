@@ -62,6 +62,16 @@
   - Working Buffer 危险区域捕获
 - **路径**: `learning/02-ai-agent/`
 
+#### ✅ AI Agent 深入学习 (2026-03-16 周日)
+- **主题**: Proactive Agent 核心概念深入学习
+- **内容**:
+  - WAL Protocol 预写日志协议详解
+  - Working Buffer Protocol 工作流程
+  - Compaction Recovery 压缩恢复
+  - Self-Improvement Guardrails 安全护栏
+  - Security Hardening 安全加固
+- **路径**: `learning/2026-03-16-周日-AIAgent学习与金融分析.md`
+
 ---
 
 ## 📁 项目结构
