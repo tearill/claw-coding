@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript 条件语句、循环、函数</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #eee;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #00d9ff;
+        }
+        
+        .section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .section h2 {
+            color: #ff6b6b;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+        
+        .demo-box {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+        }
+        
+        .demo-title {
+            color: #ffd93d;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        
+        code {
+            background: #2d2d44;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            color: #6ef3ff;
+        }
+        
+        pre {
+            background: #1e1e2e;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 10px 0;
+            border: 1px solid #3d3d5c;
+        }
+        
+        .output {
+            background: #0d1117;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 10px;
+            border-left: 4px solid #00d9ff;
+            font-family: monospace;
+            white-space: pre-wrap;
+        }
+        
+        button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin: 5px;
+            font-size: 14px;
+            transition: transform 0.2s;
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+        }
+        
+        button:active {
+            transform: translateY(0);
+        }
+        
+        .input-group {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            margin: 10px 0;
+        }
+        
+        input {
+            background: #2d2d44;
+            border: 1px solid #3d3d5c;
+            padding: 8px 12px;
+            border-radius: 6px;
+            color: #eee;
+            font-size: 14px;
+        }
+        
+        input:focus {
+            outline: none;
+            border-color: #00d9ff;
+        }
+        
+        .result {
+            color: #00ff88;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        
+        .error {
+            color: #ff6b6b;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔄 JavaScript 条件语句、循环、函数</h1>
+        
+        <!-- 条件语句 -->
+        <div class="section">
+            <h2>📋 条件语句</h2>
+            
+            <div class="demo-box">
+                <div class="demo-title">if...else 阶梯</div>
+                <div class="input-group">
+                    <label>请输入分数: </label>
+                    <input type="number" id="scoreInput" placeholder="0-100" value="85">
+                    <button onclick="checkGrade()">检查等级</button>
+                </div>
+                <div class="output" id="gradeOutput">点击按钮查看结果...</div>
+            </div>
+            
+            <div class="demo-box">
+                <div class="demo-title">switch 多分支</div>
+                <div class="input-group">
+                    <label>选择星期: </label>
+                    <select id="daySelect" style="background:#2d2d44;color:#eee;padding:8px;border-radius:6px;border:1px solid #3d3d5c;">
+                        <option value="1">周一</option>
+                        <option value="2">周二</option>
+                        <option value="3">周三</option>
+                        <option value="4">周四</option>
+                        <option value="5">周五</option>
+                        <option value="6">周六</option>
+                        <option value="7">周日</option>
+                    </select>
+                    <button onclick="getDayInfo()">获取信息</button>
+                </div>
+                <div class="output" id="dayOutput">点击按钮查看结果...</div>
+            </div>
+            
+            <div class="demo-box">
+                <div class="demo-title">三元运算符</div>
+                <pre>
+// 语法: 条件 ? 值1 : 值2
+const age = 20;
+const status = age >= 18 ? '成年人' : '未成年';
+console.log(status); // '成年人'
+                </pre>
+                <button onclick="demoTernary()">运行示例</button>
+                <div class="output" id="ternaryOutput">点击按钮查看结果...</div>
+            </div>
+        </div>
+        
+        <!-- 循环 -->
+        <div class="section">
+            <h2>🔁 循环</h2>
+            
+            <div class="demo-box">
+                <div class="demo-title">for 循环 - 打印九九乘法表</div>
+                <button onclick="demoMultiplicationTable()">生成乘法表</button>
+                <div class="output" id="multiTableOutput">点击按钮查看结果...</div>
+            </div>
+            
+            <div class="demo-box">
+                <div class="demo-title">while 循环 - 计算阶乘</div>
+                <div class="input-group">
+                    <label>输入数字: </label>
+                    <input type="number" id="factorialInput" placeholder="请输入非负整数" value="5">
+                    <button onclick="calculateFactorial()">计算阶乘</button>
+                </div>
+                <div class="output" id="factorialOutput">点击按钮查看结果...</div>
+            </div>
+            
+            <div class="demo-box">
+                <div class="demo-title">数组循环 - forEach / map / filter</div>
+                <button onclick="demoArrayMethods()">运行示例</button>
+                <div class="output" id="arrayOutput">点击按钮查看结果...</div>
+            </div>
+            
+            <div class="demo-box">
+                <div class="demo-title">break 与 continue</div>
+                <button onclick="demoBreakContinue()">运行示例</button>
+                <div class="output" id="breakOutput">点击按钮查看结果...</div>
+            </div>
+        </div>
+        
+        <!-- 函数 -->
+        <div class="section">
+            <h2>📦 函数</h2>
+            
+            <div class="demo-box">
+                <div class="demo-title">函数声明 vs 函数表达式 vs 箭头函数</div>
+                <pre>
+// 1. 函数声明 (会被提升)
+function greet(name) {
+    return `你好, ${name}!`;
+}
+
+// 2. 函数表达式
+const sayHello = function(name) {
+    return `Hello, ${name}!`;
+};
+
+// 3. 箭头函数 (ES6+)
+const welcome = (name) => `Welcome, ${name}!`;
+
+// 4. 立即执行函数表达式 (IIFE)
+(function() {
+    console.log('我立即执行');
+})();
+                </pre>
+                <button onclick="demoFunctions()">运行示例</button>
+                <div class="output" id="funcOutput">点击按钮查看结果...</div>
+            </div>
+            
+            <div class="demo-box">
+                <div class="demo-title">函数参数 - 默认参数 / 剩余参数</div>
+                <pre>
+// 默认参数
+function greet(name = '游客') {
+    return `你好, ${name}!`;
+}
+
+// 剩余参数
+function sum(...numbers) {
+    return numbers.reduce((a, b) => a + b, 0);
+}
+
+console.log(greet()); // '你好, 游客!'
+console.log(sum(1, 2, 3, 4)); // 10
+                </pre>
+                <button onclick="demoParams()">运行示例</button>
+                <div class="output" id="paramsOutput">点击按钮查看结果...</div>
+            </div>
+            
+            <div class="demo-box">
+                <div class="demo-title">闭包示例 - 计数器工厂</div>
+                <pre>
+// 闭包: 函数记住创建时的作用域
+function createCounter() {
+    let count = 0;
+    return function() {
+        count++;
+        return count;
+    };
+}
+
+const counter1 = createCounter();
+console.log(counter1()); // 1
+console.log(counter1()); // 2
+
+const counter2 = createCounter();
+console.log(counter2()); // 1 (独立的闭包)
+                </pre>
+                <button onclick="demoClosure()">运行示例</button>
+                <div class="output" id="closureOutput">点击按钮查看结果...</div>
+            </div>
+            
+            <div class="demo-box">
+                <div class="demo-title">递归 - 斐波那契数列</div>
+                <div class="input-group">
+                    <label>输入位置: </label>
+                    <input type="number" id="fibInput" placeholder="请输入正整数" value="10">
+                    <button onclick="calculateFibonacci()">计算斐波那契</button>
+                </div>
+                <div class="output" id="fibOutput">点击按钮查看结果...</div>
+            </div>
+        </div>
+        
+        <!-- 综合练习 -->
+        <div class="section">
+            <h2>🎯 综合练习 - 阶乘计算器</h2>
+            <div class="demo-box">
+                <div class="input-group">
+                    <label>计算阶乘: </label>
+                    <input type="number" id="finalFactorial" placeholder="输入非负整数" value="5">
+                    <button onclick="runFactorialDemo()">运行</button>
+                </div>
+                <div class="output" id="finalOutput">点击按钮查看完整计算过程...</div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // ===== 条件语句 =====
+        
+        function checkGrade() {
+            const score = parseInt(document.getElementById('scoreInput').value);
+            let grade, description;
+            
+            if (score >= 90) {
+                grade = 'A';
+                description = '优秀！继续保持 🎉';
+            } else if (score >= 80) {
+                grade = 'B';
+                description = '良好！还有提升空间 💪';
+            } else if (score >= 70) {
+                grade = 'C';
+                description: '中等，需要更多努力 📚';
+            } else if (score >= 60) {
+                grade = 'D';
+                description = '及格，基础需要加强 🔧';
+            } else {
+                grade = 'E';
+                description = '不及格，需要加油了！⚡';
+            }
+            
+            document.getElementById('gradeOutput').innerHTML = 
+                `分数: ${score}\n等级: ${grade}\n评价: ${description}`;
+        }
+        
+        function getDayInfo() {
+            const day = parseInt(document.getElementById('daySelect').value);
+            let info;
+            
+            switch (day) {
+                case 1:
+                    info = '周一 - 新的一周开始！今天适合制定计划 📋';
+                    break;
+                case 2:
+                    info = '周二 - 保持积极心态，继续前进！🚀';
+                    break;
+                case 3:
+                    info = '周三 - 一周过半，坚持就是胜利！💪';
+                    break;
+                case 4:
+                    info = '周四 - 距离周末还有2天，加油！🔥';
+                    break;
+                case 5:
+                    info = '周五 - 最后一天工作日！期待周末 🎉';
+                    break;
+                case 6:
+                case 7:
+                    info = '周末到了！好好放松一下吧 🏖️';
+                    break;
+                default:
+                    info = '无效输入';
+            }
+            
+            document.getElementById('dayOutput').innerText = info;
+        }
+        
+        function demoTernary() {
+            const age = 20;
+            const status = age >= 18 ? '成年人' : '未成年';
+            const message = age >= 18 ? '可以喝酒' : '不能喝酒';
+            
+            document.getElementById('ternaryOutput').innerText = 
+                `年龄: ${age}\n是否成年: ${status}\n${message}`;
+        }
+        
+        // ===== 循环 =====
+        
+        function demoMultiplicationTable() {
+            let result = '九九乘法表:\n\n';
+            
+            for (let i = 1; i <= 9; i++) {
+                let row = '';
+                for (let j = 1; j <= i; j++) {
+                    row += `${j}×${i}=${i*j}\t`;
+                }
+                result += row + '\n';
+            }
+            
+            document.getElementById('multiTableOutput').innerText = result;
+        }
+        
+        function calculateFactorial() {
+            const n = parseInt(document.getElementById('factorialInput').value);
+            
+            if (n < 0) {
+                document.getElementById('factorialOutput').innerHTML = 
+                    '<span class="error">错误: 请输入非负整数</span>';
+                return;
+            }
+            
+            // 方法1: 循环
+            let result = 1;
+            let steps = `${n}! = `;
+            
+            for (let i = n; i >= 1; i--) {
+                result *= i;
+                steps += i + (i > 1 ? ' × ' : '');
+            }
+            
+            steps += ` = ${result}`;
+            
+            document.getElementById('factorialOutput').innerText = steps;
+        }
+        
+        function demoArrayMethods() {
+            const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+            let output = '原始数组: ' + numbers + '\n\n';
+            
+            // forEach - 遍历
+            let sum = 0;
+            numbers.forEach(n => sum += n);
+            output += 'forEach 求和: ' + sum + '\n';
+            
+            // map - 映射
+            const doubled = numbers.map(n => n * 2);
+            output += 'map (×2): ' + doubled + '\n';
+            
+            // filter - 过滤
+            const even = numbers.filter(n => n % 2 === 0);
+            output += 'filter (偶数): ' + even + '\n';
+            
+            // reduce - 聚合
+            const product = numbers.reduce((a, b) => a * b, 1);
+            output += 'reduce (乘积): ' + product + '\n';
+            
+            // 链式调用
+            const result = numbers
+                .filter(n => n > 5)
+                .map(n => n * 10);
+            output += '链式 (>5 ×10): ' + result;
+            
+            document.getElementById('arrayOutput').innerText = output;
+        }
+        
+        function demoBreakContinue() {
+            let output = '';
+            
+            // break - 跳出循环
+            output += '=== break 示例 ===\n';
+            for (let i = 1; i <= 10; i++) {
+                if (i === 5) {
+                    output += `遇到 ${i}，跳出循环\n`;
+                    break;
+                }
+                output += `i = ${i}\n`;
+            }
+            
+            output += '\n=== continue 示例 ===\n';
+            for (let i = 1; i <= 5; i++) {
+                if (i === 3) {
+                    output += `跳过 ${i}\n`;
+                    continue;
+                }
+                output += `处理 i = ${i}\n`;
+            }
+            
+            document.getElementById('breakOutput').innerText = output;
+        }
+        
+        // ===== 函数 =====
+        
+        function demoFunctions() {
+            // 函数声明
+            function greet(name) {
+                return `你好, ${name}!`;
+            }
+            
+            // 函数表达式
+            const sayHello = function(name) {
+                return `Hello, ${name}!`;
+            };
+            
+            // 箭头函数
+            const welcome = (name) => `Welcome, ${name}!`;
+            
+            let output = '函数声明: ' + greet('夜墨') + '\n';
+            output += '函数表达式: ' + sayHello('Yemo') + '\n';
+            output += '箭头函数: ' + welcome('Cat') + '\n';
+            
+            // IIFE
+            (function() {
+                output += '\nIIFE 立即执行!';
+            })();
+            
+            document.getElementById('funcOutput').innerText = output;
+        }
+        
+        function demoParams() {
+            // 默认参数
+            function greet(name = '游客') {
+                return `你好, ${name}!`;
+            }
+            
+            // 剩余参数
+            function sum(...numbers) {
+                return numbers.reduce((a, b) => a + b, 0);
+            }
+            
+            let output = '默认参数:\n';
+            output += 'greet() = ' + greet() + '\n';
+            output += 'greet("夜墨") = ' + greet('夜墨') + '\n';
+            output += '\n剩余参数:\n';
+            output += 'sum(1, 2, 3) = ' + sum(1, 2, 3) + '\n';
+            output += 'sum(1, 2, 3, 4, 5) = ' + sum(1, 2, 3, 4, 5);
+            
+            document.getElementById('paramsOutput').innerText = output;
+        }
+        
+        function demoClosure() {
+            function createCounter() {
+                let count = 0;
+                return function() {
+                    count++;
+                    return count;
+                };
+            }
+            
+            const counter1 = createCounter();
+            const counter2 = createCounter();
+            
+            let output = 'counter1:\n';
+            output += 'counter1() = ' + counter1() + '\n';
+            output += 'counter1() = ' + counter1() + '\n';
+            output += 'counter1() = ' + counter1() + '\n';
+            output += '\ncounter2 (独立闭包):\n';
+            output += 'counter2() = ' + counter2() + '\n';
+            output += 'counter2() = ' + counter2();
+            
+            document.getElementById('closureOutput').innerText = output;
+        }
+        
+        function calculateFibonacci() {
+            const n = parseInt(document.getElementById('fibInput').value);
+            
+            function fib(num) {
+                if (num <= 1) return num;
+                return fib(num - 1) + fib(num - 2);
+            }
+            
+            let result = '';
+            for (let i = 0; i <= n; i++) {
+                result += `F(${i}) = ${fib(i)}\n`;
+            }
+            
+            document.getElementById('fibOutput').innerText = result;
+        }
+        
+        // ===== 综合练习 =====
+        
+        function runFactorialDemo() {
+            const n = parseInt(document.getElementById('finalFactorial').value);
+            
+            if (isNaN(n) || n < 0) {
+                document.getElementById('finalOutput').innerHTML = 
+                    '<span class="error">请输入有效的非负整数</span>';
+                return;
+            }
+            
+            if (n > 20) {
+                document.getElementById('finalOutput').innerHTML = 
+                    '<span class="error">数值过大，可能导致精度问题</span>';
+                return;
+            }
+            
+            // 方法1: 循环
+            let result1 = 1;
+            let steps1 = '【循环方法】\n' + n + '! = ';
+            for (let i = n; i >= 1; i--) {
+                result1 *= i;
+                steps1 += i + (i > 1 ? ' × ' : '');
+            }
+            steps1 += ' = ' + result1;
+            
+            // 方法2: 递归
+            function factorial(n) {
+                if (n <= 1) return 1;
+                return n * factorial(n - 1);
+            }
+            const result2 = factorial(n);
+            
+            // 方法3: reduce
+            const arr = Array.from({length: n}, (_, i) => i + 1);
+            const result3 = arr.reduce((a, b) => a * b, 1);
+            
+            let output = steps1 + '\n\n';
+            output += '【递归方法】 ' + n + '! = ' + result2 + '\n\n';
+            output += '【reduce方法】 ' + n + '! = ' + result3 + '\n\n';
+            output += '✅ 结果一致: ' + (result1 === result2 && result2 === result3);
+            
+            document.getElementById('finalOutput').innerText = output;
+        }
+    </script>
+</body>
+</html>

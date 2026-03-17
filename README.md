@@ -44,6 +44,16 @@
 - **练习**: 响应式网格布局演示页面
 - **路径**: `learning/01-html-css/day3-responsive/`
 
+#### ✅ Week 2 Day 2 (2026-03-17)
+- **主题**: JavaScript 条件语句、循环、函数
+- **内容**:
+  - 条件语句：if...else, switch, 三元运算符
+  - 循环：for, while, forEach, map, filter, reduce
+  - 函数：声明 vs 表达式 vs 箭头函数
+  - 高级概念：闭包、递归、IIFE
+- **练习**: 交互式条件/循环/函数演示页面
+- **路径**: `learning/02-javascript/day2-control-flow/`
+
 #### ✅ Week 2 Day 1 (2026-03-15)
 - **主题**: JavaScript 基础 - 变量、数据类型、运算符
 - **内容**:
