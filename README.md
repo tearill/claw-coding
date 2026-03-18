@@ -82,6 +82,15 @@
   - Security Hardening 安全加固
 - **路径**: `learning/2026-03-16-周日-AIAgent学习与金融分析.md`
 
+#### ✅ Week 2 Day 3 (2026-03-18 周三)
+- **主题**: JavaScript 数组与对象操作
+- **内容**:
+  - 数组核心方法：map, filter, reduce, find, some, every
+  - 对象操作：Object.keys/values/entries, 深拷贝, 对象合并
+  - 数据处理实战：去重、分块、分组统计
+- **练习**: 交互式数组与对象操作演示页面
+- **路径**: `learning/02-javascript/day4-array-object/`
+
 ---
 
 ## 📁 项目结构
