@@ -91,6 +91,19 @@
 - **练习**: 交互式数组与对象操作演示页面
 - **路径**: `learning/02-javascript/day4-array-object/`
 
+#### ✅ Week 2 Day 4 (2026-03-19 周四)
+- **主题**: DOM 操作与事件处理
+- **内容**:
+  - DOM 树结构与遍历
+  - 元素获取：querySelector / getElementById / querySelectorAll
+  - 内容操作：innerHTML vs textContent (XSS 安全)
+  - 创建/删除元素：createElement / appendChild / remove
+  - 事件监听：addEventListener / 事件对象
+  - 事件冒泡与捕获
+  - 事件委托（性能优化关键）
+- **练习**: Todo List 网页应用（支持 localStorage 持久化）
+- **路径**: `learning/02-javascript/day4-dom-events/`
+
 ---
 
 ## 📁 项目结构
