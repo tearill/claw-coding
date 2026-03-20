@@ -18,7 +18,8 @@
 - [x] 数组、对象操作
 - [x] DOM 操作基础
 - [x] 事件处理
-- [ ] **实践**：Todo List 网页应用
+- [x] 异步编程：Promise、async/await、Event Loop
+- [x] **实践**：Todo List 网页应用
 
 ### 1.3 开发工具
 - [ ] VS Code 安装与配置
@@ -37,8 +38,8 @@
 - [ ] 箭头函数、展开运算符
 
 ### 2.2 异步编程
-- [ ] 回调函数、Promise 链式调用
-- [ ] async/await 异步语法
+- [x] 回调函数、Promise 链式调用
+- [x] async/await 异步语法
 - [ ] Fetch API 网络请求
 - [ ] **实践**：天气查询小应用
 

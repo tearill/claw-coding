@@ -104,6 +104,17 @@
 - **练习**: Todo List 网页应用（支持 localStorage 持久化）
 - **路径**: `learning/02-javascript/day4-dom-events/`
 
+#### ✅ Week 2 Day 5 (2026-03-20 周五)
+- **主题**: JavaScript 异步编程（Promise、async/await）
+- **内容**:
+  - Promise 的三种状态：pending / fulfilled / rejected
+  - Promise 链式调用与错误处理
+  - async/await 语法糖
+  - Event Loop 事件循环机制
+  - 微任务 vs 宏任务执行顺序
+- **练习**: 手写 Promise 实现、async/await 天气查询、Event Loop 理解
+- **路径**: `learning/02-javascript/day6-async-await/`
+
 ---
 
 ## 📁 项目结构
