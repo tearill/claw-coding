@@ -115,6 +115,15 @@
 - **练习**: 手写 Promise 实现、async/await 天气查询、Event Loop 理解
 - **路径**: `learning/02-javascript/day6-async-await/`
 
+#### ✅ AI Agent 深入学习 (2026-03-21 周六)
+- **主题**: OpenClaw Skill 系统与 Proactive Agent 架构深入
+- **内容**:
+  - Skill 系统设计模式与标准化
+  - Proactive Agent 三大支柱深入理解
+  - WAL Protocol 与 Working Buffer 实践
+  - Agent 工程化实践思考
+- **路径**: `learning/2026-03-21-周六-AIAgent深入学习与Skill系统.md`
+
 ---
 
 ## 📁 项目结构

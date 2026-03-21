@@ -223,6 +223,7 @@
 - [x] Compaction Recovery 压缩恢复
 - [x] Self-Improvement Guardrails 安全护栏
 - [x] Security Hardening 安全加固
+- [x] OpenClaw Skill 系统设计模式
 - [ ] 深入实践：在项目中应用 Proactive Agent 架构
 
 ---
