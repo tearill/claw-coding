@@ -224,6 +224,9 @@
 - [x] Self-Improvement Guardrails 安全护栏
 - [x] Security Hardening 安全加固
 - [x] OpenClaw Skill 系统设计模式
+- [x] OpenClaw Agent Runtime 架构（Workspace、Bootstrap、Session）
+- [x] Skill 加载机制与优先级规则
+- [x] Skill Gating 机制（requires.bins/env/config）
 - [ ] 深入实践：在项目中应用 Proactive Agent 架构
 
 ---

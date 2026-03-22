@@ -124,6 +124,16 @@
   - Agent 工程化实践思考
 - **路径**: `learning/2026-03-21-周六-AIAgent深入学习与Skill系统.md`
 
+#### ✅ AI Agent 架构深入 (2026-03-22 周日)
+- **主题**: OpenClaw Agent Runtime 架构与 Skill 系统深入
+- **内容**:
+  - Agent Runtime 核心概念：Workspace、Bootstrap 文件、Session 管理
+  - Skill 系统加载机制：三个位置、三层优先级
+  - Skill Gating 机制：requires.bins/env/config
+  - Multi-Agent 场景下的 Skill 隔离与共享
+  - Token 成本意识
+- **路径**: `learning/2026-03-22-周日-AIAgent架构深入与Skill系统.md`
+
 ---
 
 ## 📁 项目结构
