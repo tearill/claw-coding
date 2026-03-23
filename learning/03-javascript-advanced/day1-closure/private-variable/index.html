@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>私有变量演示 - 闭包应用</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      padding: 2rem;
+    }
+    
+    .container {
+      background: white;
+      padding: 2rem;
+      border-radius: 16px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      min-width: 400px;
+    }
+    
+    h1 {
+      color: #333;
+      margin-bottom: 1.5rem;
+      font-size: 1.5rem;
+      text-align: center;
+    }
+    
+    .person-card {
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    
+    .person-name {
+      font-size: 1.25rem;
+      font-weight: bold;
+      color: #1f2937;
+      margin-bottom: 0.5rem;
+    }
+    
+    .person-info {
+      color: #6b7280;
+      font-size: 0.875rem;
+      margin-bottom: 1rem;
+    }
+    
+    .actions {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    
+    button {
+      padding: 0.5rem 1rem;
+      font-size: 0.875rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    button:hover {
+      transform: scale(1.05);
+    }
+    
+    .btn-get { background: #3b82f6; color: white; }
+    .btn-set { background: #8b5cf6; color: white; }
+    
+    .log {
+      margin-top: 1.5rem;
+      padding: 1rem;
+      background: #1f2937;
+      border-radius: 8px;
+      color: #10b981;
+      font-family: 'Courier New', monospace;
+      font-size: 0.8rem;
+      max-height: 200px;
+      overflow-y: auto;
+    }
+    
+    .log p { margin: 0.25rem 0; }
+    .log .label { color: #fbbf24; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🔐 私有变量演示</h1>
+    
+    <div class="person-card">
+      <div class="person-name" id="nameDisplay">请创建对象</div>
+      <div class="person-info" id="infoDisplay">年龄: - | 余额: -</div>
+      <div class="actions">
+        <button class="btn-get" id="getName">获取姓名</button>
+        <button class="btn-set" id="setName">设置姓名</button>
+        <button class="btn-get" id="getAge">获取年龄</button>
+        <button class="btn-set" id="getBalance">查看余额</button>
+      </div>
+    </div>
+    
+    <div class="log" id="log"></div>
+  </div>
+
+  <script>
+    // 私有变量实现 - 闭包模拟私有属性
+    function createPerson(name, age, balance) {
+      // 私有变量（利用闭包实现）
+      let _name = name;
+      let _age = age;
+      let _balance = balance;
+      
+      // 返回公开接口
+      return {
+        // Getter/Setter for name
+        getName() {
+          return _name;
+        },
+        setName(newName) {
+          if (typeof newName === 'string' && newName.trim()) {
+            _name = newName;
+            return true;
+          }
+          return false;
+        },
+        
+        // Getter/Setter for age
+        getAge() {
+          return _age;
+        },
+        setAge(newAge) {
+          if (typeof newAge === 'number' && newAge > 0 && newAge < 150) {
+            _age = newAge;
+            return true;
+          }
+          return false;
+        },
+        
+        // 只读余额（没有 setter）
+        getBalance() {
+          return _balance;
+        },
+        
+        // 公开方法
+        introduce() {
+          return `大家好，我是${_name}，今年${_age}岁`;
+        }
+      };
+    }
+    
+    // 创建人物实例
+    const person = createPerson('张三', 25, 10000);
+    
+    // 日志功能
+    const logEl = document.getElementById('log');
+    const nameDisplay = document.getElementById('nameDisplay');
+    const infoDisplay = document.getElementById('infoDisplay');
+    
+    function log(msg) {
+      const p = document.createElement('p');
+      p.innerHTML = `<span class="label">></span> ${msg}`;
+      logEl.appendChild(p);
+      logEl.scrollTop = logEl.scrollHeight;
+    }
+    
+    function updateDisplay() {
+      nameDisplay.textContent = person.getName();
+      infoDisplay.textContent = `年龄: ${person.getAge()} | 余额: ¥${person.getBalance()}`;
+    }
+    
+    // 绑定按钮事件
+    document.getElementById('getName').addEventListener('click', () => {
+      log(`person.getName() = "${person.getName()}"`);
+    });
+    
+    document.getElementById('setName').addEventListener('click', () => {
+      const newName = prompt('请输入新名字:', '李四');
+      if (newName) {
+        person.setName(newName);
+        log(`person.setName("${newName}")`);
+        updateDisplay();
+      }
+    });
+    
+    document.getElementById('getAge').addEventListener('click', () => {
+      log(`person.getAge() = ${person.getAge()}`);
+    });
+    
+    document.getElementById('getBalance').addEventListener('click', () => {
+      log(`person.getBalance() = ¥${person.getBalance()}`);
+      log(`注意：余额是只读属性，没有 setter`);
+    });
+    
+    // 初始化
+    updateDisplay();
+    log('--- 私有变量演示 ---');
+    log('利用闭包实现私有变量：_name, _age, _balance');
+    log('外部无法直接访问，只能通过 getter/setter');
+    log(person.introduce());
+  </script>
+</body>
+</html>

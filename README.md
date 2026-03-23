@@ -8,7 +8,7 @@
 |------|------|------|
 | Week 1 | HTML & CSS 基础 | 🔄 进行中 |
 | Week 2 | JavaScript 基础 | 🔄 进行中 |
-| Week 3 | TypeScript 入门 | ⏳ |
+| Week 3 | JavaScript 进阶 & TypeScript | 🔄 进行中 |
 | Week 4 | 浏览器原理与网络 | ⏳ |
 | Week 5-6 | Vue 3 核心与生态 | ⏳ |
 | Week 7-8 | React 核心与生态 | ⏳ |
@@ -114,6 +114,17 @@
   - 微任务 vs 宏任务执行顺序
 - **练习**: 手写 Promise 实现、async/await 天气查询、Event Loop 理解
 - **路径**: `learning/02-javascript/day6-async-await/`
+
+#### ✅ Week 3 Day 1 (2026-03-23 周一)
+- **主题**: 闭包、作用域链、执行上下文
+- **内容**:
+  - 闭包的定义与形成条件
+  - 词法作用域与作用域链
+  - 执行上下文的创建与执行过程
+  - 闭包应用：私有变量、函数工厂
+  - 闭包与内存泄漏问题
+- **练习**: 计数器闭包、私有变量演示、函数工厂
+- **路径**: `learning/03-javascript-advanced/day1-closure/`
 
 #### ✅ AI Agent 深入学习 (2026-03-21 周六)
 - **主题**: OpenClaw Skill 系统与 Proactive Agent 架构深入

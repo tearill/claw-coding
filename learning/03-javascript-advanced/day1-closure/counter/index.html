@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>闭包计数器</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      font-family: 'Segoe UI', system-ui, sans-serif;
+    }
+    
+    .container {
+      background: white;
+      padding: 2rem;
+      border-radius: 16px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      text-align: center;
+      min-width: 320px;
+    }
+    
+    h1 {
+      color: #333;
+      margin-bottom: 1.5rem;
+      font-size: 1.5rem;
+    }
+    
+    .display {
+      font-size: 4rem;
+      font-weight: bold;
+      color: #667eea;
+      margin: 1rem 0;
+      font-family: 'Courier New', monospace;
+    }
+    
+    .buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 1.5rem;
+    }
+    
+    button {
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 600;
+    }
+    
+    button:hover {
+      transform: translateY(-2px);
+    }
+    
+    button:active {
+      transform: translateY(0);
+    }
+    
+    .btn-increment {
+      background: #10b981;
+      color: white;
+    }
+    
+    .btn-increment:hover {
+      background: #059669;
+    }
+    
+    .btn-decrement {
+      background: #ef4444;
+      color: white;
+    }
+    
+    .btn-decrement:hover {
+      background: #dc2626;
+    }
+    
+    .btn-reset {
+      background: #6b7280;
+      color: white;
+    }
+    
+    .btn-reset:hover {
+      background: #4b5563;
+    }
+    
+    .info {
+      margin-top: 1.5rem;
+      padding: 1rem;
+      background: #f3f4f6;
+      border-radius: 8px;
+      font-size: 0.875rem;
+      color: #6b7280;
+      text-align: left;
+    }
+    
+    .info code {
+      background: #e5e7eb;
+      padding: 0.2rem 0.4rem;
+      border-radius: 4px;
+      font-family: 'Courier New', monospace;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🔢 闭包计数器</h1>
+    <div class="display" id="display">0</div>
+    <div class="buttons">
+      <button class="btn-increment" id="increment">+ 增加</button>
+      <button class="btn-decrement" id="decrement">- 减少</button>
+      <button class="btn-reset" id="reset">↺ 重置</button>
+    </div>
+    <div class="info">
+      <p><strong>闭包实现：</strong>利用闭包实现私有变量 <code>count</code>，外部无法直接访问</p>
+    </div>
+  </div>
+
+  <script>
+    // 闭包计数器 - 利用闭包实现私有变量
+    function createCounter() {
+      // 私有变量 count，外部无法直接访问
+      let count = 0;
+      
+      // 返回一个对象，包含操作方法
+      return {
+        increment() {
+          count++;
+          return count;
+        },
+        decrement() {
+          count--;
+          return count;
+        },
+        reset() {
+          count = 0;
+          return count;
+        },
+        getCount() {
+          return count;
+        }
+      };
+    }
+    
+    // 创建计数器实例
+    const counter = createCounter();
+    
+    // DOM 元素
+    const display = document.getElementById('display');
+    const incrementBtn = document.getElementById('increment');
+    const decrementBtn = document.getElementById('decrement');
+    const resetBtn = document.getElementById('reset');
+    
+    // 更新显示
+    function updateDisplay() {
+      display.textContent = counter.getCount();
+    }
+    
+    // 绑定事件
+    incrementBtn.addEventListener('click', () => {
+      counter.increment();
+      updateDisplay();
+    });
+    
+    decrementBtn.addEventListener('click', () => {
+      counter.decrement();
+      updateDisplay();
+    });
+    
+    resetBtn.addEventListener('click', () => {
+      counter.reset();
+      updateDisplay();
+    });
+    
+    // 初始化
+    updateDisplay();
+    
+    console.log('--- 闭包计数器演示 ---');
+    console.log('count 是私有变量，外部无法直接访问');
+    console.log('counter.increment():', counter.increment());
+    console.log('counter.increment():', counter.increment());
+    console.log('counter.getCount():', counter.getCount());
+    console.log('counter.decrement():', counter.decrement());
+    console.log('counter.getCount():', counter.getCount());
+  </script>
+</body>
+</html>
