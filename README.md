@@ -126,6 +126,27 @@
 - **练习**: 计数器闭包、私有变量演示、函数工厂
 - **路径**: `learning/03-javascript-advanced/day1-closure/`
 
+#### ✅ Week 3 Day 2 (2026-03-24 周二)
+- **主题**: this 指向、call、apply、bind
+- **内容**:
+  - this 的 4 种绑定规则：默认绑定、隐式绑定、显式绑定、new 绑定
+  - call、apply、bind 的区别与用法
+  - 手动实现 call 和 bind 方法
+  - 箭头函数的 this 特性
+  - 类数组转数组的实际应用
+- **练习**: 手写 call 实现、手写 bind 实现、继承中的应用
+- **路径**: `learning/03-javascript-advanced/day2-this-bind/`
+
+#### ✅ Week 3 Day 3 (2026-03-25 周三)
+- **主题**: A股复盘 + 前端复习（闭包 + this 指向）
+- **内容**:
+  - 复习闭包核心概念与常见应用
+  - 复习 this 的 4 种绑定规则
+  - 复习 call/apply/bind 原理与区别
+  - 建立知识体系，形成关联理解
+- **练习**: 复习之前的闭包和 this 练习代码
+- **路径**: `learning/2026-03-25-周三-前端复习与闭包this总结.md`
+
 #### ✅ AI Agent 深入学习 (2026-03-21 周六)
 - **主题**: OpenClaw Skill 系统与 Proactive Agent 架构深入
 - **内容**:
