@@ -166,6 +166,32 @@
   - Token 成本意识
 - **路径**: `learning/2026-03-22-周日-AIAgent架构深入与Skill系统.md`
 
+#### ✅ Week 3 Day 3 (2026-03-26 周四)
+- **主题**: ES6+ 新特性
+- **内容**:
+  - let/const 与解构赋值
+  - 模板字符串
+  - 箭头函数
+  - 展开运算符
+  - Promise 与 async/await
+  - 类与模块化
+  - Symbol、迭代器、生成器
+  - 可选链与空值合并
+- **练习**: ES6+ 新特性演示代码
+- **路径**: `learning/03-javascript-advanced/day3-es6-features/`
+
+#### ✅ Week 3 Day 4 (2026-03-27 周五)
+- **主题**: TypeScript 基础类型系统
+- **内容**:
+  - 基础类型：boolean, number, string, array, tuple, any, void
+  - 接口 vs 类型别名（接口可声明合并）
+  - 联合类型 (`|`) 与交叉类型 (`&`)
+  - 泛型基础：`<T>` 函数、接口、类
+  - 工具类型：Partial, Pick, Omit, Record
+  - 类型守卫：typeof, instanceof, 自定义守卫
+- **练习**: TypeScript 基础类型演示代码
+- **路径**: `learning/03-javascript-advanced/day4-typescript-basics/`
+
 ---
 
 ## 📁 项目结构

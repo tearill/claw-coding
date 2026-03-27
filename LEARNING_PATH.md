@@ -32,10 +32,10 @@
 ## 阶段二：前端进阶 (3-4 周)
 
 ### 2.1 ES6+ 新特性
-- [ ] let/const、解构赋值、模板字符串
-- [ ] Promise、async/await
-- [ ] 模块化 (import/export)
-- [ ] 箭头函数、展开运算符
+- [x] let/const、解构赋值、模板字符串
+- [x] Promise、async/await
+- [x] 模块化 (import/export)
+- [x] 箭头函数、展开运算符
 
 ### 2.2 异步编程
 - [x] 回调函数、Promise 链式调用
@@ -156,7 +156,7 @@
 - [ ] **Babel**：JavaScript 编译器
   - 插件与预设
   - AST 抽象语法树基础
-- [ ] **TypeScript** 入门：
+- [x] **TypeScript** 入门：
   - 类型系统
   - 泛型
   - 类型守卫
