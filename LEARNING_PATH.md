@@ -40,8 +40,8 @@
 ### 2.2 异步编程
 - [x] 回调函数、Promise 链式调用
 - [x] async/await 异步语法
-- [ ] Fetch API 网络请求
-- [ ] **实践**：天气查询小应用
+- [x] Fetch API 网络请求
+- [x] **实践**：天气查询小应用
 
 ### 2.3 CSS 进阶
 - [ ] CSS 变量 (Custom Properties)

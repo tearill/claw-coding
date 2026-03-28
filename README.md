@@ -192,6 +192,18 @@
 - **练习**: TypeScript 基础类型演示代码
 - **路径**: `learning/03-javascript-advanced/day4-typescript-basics/`
 
+#### ✅ Week 3 Day 5 (2026-03-28 周六)
+- **主题**: TypeScript 进阶（泛型约束、映射类型、条件类型、模块化）
+- **内容**:
+  - 泛型约束：`K extends keyof T` 确保键有效
+  - 泛型类：`Storage<T>` 泛型在类中的应用
+  - 映射类型：`[P in keyof T] ?/readonly` 批量生成类型
+  - 条件类型：`T extends U ? X : Y` 动态生成类型
+  - infer 关键字：类型推断（实现 ReturnType 原理）
+  - 模块化：CommonJS vs ES Module
+- **练习**: 手写 Partial、Readonly、ReturnType 实现
+- **路径**: `learning/03-javascript-advanced/day5-typescript-advanced/`
+
 ---
 
 ## 📁 项目结构
