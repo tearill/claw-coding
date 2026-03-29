@@ -9,6 +9,7 @@
 | Week 1 | HTML & CSS 基础 | 🔄 进行中 |
 | Week 2 | JavaScript 基础 | 🔄 进行中 |
 | Week 3 | JavaScript 进阶 & TypeScript | 🔄 进行中 |
+| Week 4 | 浏览器原理与网络 | 🔄 进行中 |
 | Week 4 | 浏览器原理与网络 | ⏳ |
 | Week 5-6 | Vue 3 核心与生态 | ⏳ |
 | Week 7-8 | React 核心与生态 | ⏳ |
@@ -203,6 +204,14 @@
   - 模块化：CommonJS vs ES Module
 - **练习**: 手写 Partial、Readonly、ReturnType 实现
 - **路径**: `learning/03-javascript-advanced/day5-typescript-advanced/`
+
+#### ✅ Week 3 总结 (2026-03-29 周日)
+- **主题**: Week 3 本周总结 + 下周预习 + 金融分析
+- **内容**:
+  - 本周学习回顾：闭包、this 绑定、ES6+、TypeScript
+  - 下周预览：Week 4 浏览器原理与网络基础
+  - 金融分析：周日非交易日，简单关注外围市场
+- **笔记**: `learning/2026-03-29-周日-Week3总结与下周预习.md`
 
 ---
 
