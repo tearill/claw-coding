@@ -213,6 +213,17 @@
   - 金融分析：周日非交易日，简单关注外围市场
 - **笔记**: `learning/2026-03-29-周日-Week3总结与下周预习.md`
 
+#### ✅ Week 4 Day 1 (2026-03-30 周一)
+- **主题**: 浏览器渲染过程 (Critical Rendering Path)
+- **内容**:
+  - 浏览器从 URL 到页面的完整流程
+  - DOM 树、CSSOM 树、Render 树的构建过程
+  - 布局（Layout）与绘制（Paint）
+  - 重排（Reflow）与重绘（Repaint）
+  - 图层（Layer）与合成（Composite）
+- **练习**: 通过 Chrome DevTools 观察渲染过程
+- **笔记**: `learning/2026-03-30-周一-浏览器渲染过程.md`
+
 ---
 
 ## 📁 项目结构
