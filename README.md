@@ -224,6 +224,18 @@
 - **练习**: 通过 Chrome DevTools 观察渲染过程
 - **笔记**: `learning/2026-03-30-周一-浏览器渲染过程.md`
 
+#### ✅ Week 4 Day 2 (2026-03-31 周二)
+- **主题**: Event Loop 与任务队列
+- **内容**:
+  - JavaScript 单线程与事件循环机制
+  - 宏任务 (Macrotask) vs 微任务 (Microtask)
+  - 任务队列的执行顺序：同步 → 微任务 → 宏任务 → 微任务
+  - async/await 与 Promise 的执行原理
+  - 经典面试题解析
+- **练习**: Event Loop 执行顺序练习代码
+- **路径**: `learning/04-browser-principles/02-event-loop/`
+- **笔记**: `learning/2026-03-31-周二-EventLoop与任务队列.md`
+
 ---
 
 ## 📁 项目结构
