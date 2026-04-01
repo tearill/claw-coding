@@ -236,9 +236,17 @@
 - **路径**: `learning/04-browser-principles/02-event-loop/`
 - **笔记**: `learning/2026-03-31-周二-EventLoop与任务队列.md`
 
----
-
-## 📁 项目结构
+#### ✅ Week 4 Day 3 (2026-04-01 周三)
+- **主题**: A股复盘 + 前端复习（浏览器渲染 + Event Loop）
+- **内容**:
+  - A股复盘：3月最后一个交易日盘面分析
+  - 浏览器渲染关键路径：DOM → CSSOM → Render Tree → Layout → Paint → Composite
+  - 重排 vs 重绘 vs 合成
+  - Event Loop 执行流程：同步 → 微任务 → 宏任务 → 渲染
+  - requestAnimationFrame 与渲染时机
+- **练习**: 浏览器渲染与 Event Loop 综合练习代码
+- **路径**: `learning/04-browser-principles/03-review/`
+- **笔记**: `learning/2026-04-01-周三-A股复盘与前端复习.md`
 
 ```
 claw-coding/
