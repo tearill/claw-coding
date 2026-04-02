@@ -10,7 +10,7 @@
 | Week 2 | JavaScript 基础 | 🔄 进行中 |
 | Week 3 | JavaScript 进阶 & TypeScript | 🔄 进行中 |
 | Week 4 | 浏览器原理与网络 | 🔄 进行中 |
-| Week 4 | 浏览器原理与网络 | ⏳ |
+| Week 4 | 浏览器原理与网络 | 🔄 进行中 |
 | Week 5-6 | Vue 3 核心与生态 | ⏳ |
 | Week 7-8 | React 核心与生态 | ⏳ |
 | Week 9-10 | CSS 框架与实战 | ⏳ |
@@ -247,6 +247,19 @@
 - **练习**: 浏览器渲染与 Event Loop 综合练习代码
 - **路径**: `learning/04-browser-principles/03-review/`
 - **笔记**: `learning/2026-04-01-周三-A股复盘与前端复习.md`
+
+#### ✅ Week 4 Day 3 (2026-04-02 周四)
+- **主题**: HTTP/HTTPS 协议
+- **内容**:
+  - HTTP 请求/响应结构：请求行、请求头、请求体
+  - 请求方法：GET/POST/PUT/DELETE/PATCH
+  - HTTP 状态码分类：1xx/2xx/3xx/4xx/5xx
+  - HTTPS TLS 握手流程：非对称加密 + 对称加密
+  - HTTP/2 新特性：多路复用、Header 压缩、服务器推送
+  - HTTP/3 基于 QUIC 协议
+- **练习**: HTTP 协议交互式演示页面
+- **路径**: `learning/04-browser-principles/03-http-https/`
+- **笔记**: `learning/2026-04-02-周四-HTTP-HTTPS协议.md`
 
 ```
 claw-coding/
