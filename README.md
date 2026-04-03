@@ -261,6 +261,17 @@
 - **路径**: `learning/04-browser-principles/03-http-https/`
 - **笔记**: `learning/2026-04-02-周四-HTTP-HTTPS协议.md`
 
+#### ✅ Week 4 Day 4 (2026-04-03 周五)
+- **主题**: RESTful API 设计原则
+- **内容**:
+  - REST 架构风格六大原则：客户端-服务器分离、无状态、可缓存、分层系统、统一接口、按需代码
+  - HTTP 方法正确使用：GET（读取）、POST（创建）、PUT（完整更新）、PATCH（部分更新）、DELETE（删除）
+  - 资源命名规范：使用名词、复数形式、层次结构
+  - 常用 HTTP 状态码：200/201/204/400/401/403/404/500
+- **练习**: RESTful API 设计原则示例代码
+- **路径**: `learning/04-browser-principles/day4-restful-api/`
+- **笔记**: `learning/2026-04-03-周五-RESTfulAPI设计原则.md`
+
 ```
 claw-coding/
 ├── learning/              # 学习练习代码

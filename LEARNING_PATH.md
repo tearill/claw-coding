@@ -128,7 +128,7 @@
 - [ ] MySQL 基础与 CRUD
 - [ ] MongoDB (Mongoose)
 - [ ] Redis 缓存
-- [ ] **实践**：RESTful API 设计
+- [x] **实践**：RESTful API 设计
 
 ### 5.4 认证与安全
 - [ ] JWT 认证
