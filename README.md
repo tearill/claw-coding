@@ -272,6 +272,17 @@
 - **路径**: `learning/04-browser-principles/day4-restful-api/`
 - **笔记**: `learning/2026-04-03-周五-RESTfulAPI设计原则.md`
 
+#### ✅ AI Agent 深入学习 (2026-04-04 周六)
+- **主题**: Proactive Agent v3.1.0 深入学习与 WAL Protocol 实践
+- **内容**:
+  - WAL Protocol 预写日志协议详解：触发条件、执行流程
+  - Working Buffer Protocol 危险区域捕获机制
+  - Compaction Recovery 压缩恢复流程
+  - Autonomous vs Prompted Crons 定时任务新模式
+  - Verify Implementation, Not Intent 实现验证原则
+  - ADL Protocol 安全护栏与 VFM Protocol 价值评分
+- **笔记**: `learning/2026-04-04-周六-ProactiveAgent深入学习.md`
+
 ```
 claw-coding/
 ├── learning/              # 学习练习代码

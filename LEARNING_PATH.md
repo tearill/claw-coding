@@ -227,6 +227,9 @@
 - [x] OpenClaw Agent Runtime 架构（Workspace、Bootstrap、Session）
 - [x] Skill 加载机制与优先级规则
 - [x] Skill Gating 机制（requires.bins/env/config）
+- [x] Autonomous vs Prompted Crons 定时任务新模式
+- [x] Verify Implementation, Not Intent 实现验证原则
+- [x] ADL Protocol 与 VFM Protocol 安全护栏
 - [ ] 深入实践：在项目中应用 Proactive Agent 架构
 
 ---
