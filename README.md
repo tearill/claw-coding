@@ -292,6 +292,18 @@
   - MEMORY.md 更新
 - **笔记**: `learning/2026-04-05-周日-Week4总结与下周预习.md`
 
+#### ✅ Week 5 Day 1 (2026-04-06 周一)
+- **主题**: Vue 3 简介 + Composition API
+- **内容**:
+  - Vue 3 基本概念与特点
+  - Composition API 核心：ref(), reactive(), onMounted()
+  - `<script setup>` 语法
+  - ref vs reactive 区别
+  - Composition API 优势：逻辑复用、代码组织、TS 支持
+- **练习**: Vue 3 计数器练习
+- **路径**: `learning/05-vue3/day1-composition-api/`
+- **笔记**: `learning/2026-04-06-周一-Vue3核心.md`
+
 ```
 claw-coding/
 ├── learning/              # 学习练习代码
