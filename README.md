@@ -292,6 +292,17 @@
   - MEMORY.md 更新
 - **笔记**: `learning/2026-04-05-周日-Week4总结与下周预习.md`
 
+#### ✅ Week 5 Day 2 (2026-04-07 周二)
+- **主题**: Vue 3 响应式系统 ref vs reactive
+- **内容**:
+  - ref(): 用于基本类型，创建包含 .value 属性的响应式对象
+  - reactive(): 用于对象/数组，创建深度响应式的 Proxy
+  - ref vs reactive 核心区别和使用场景
+  - Vue 3 响应式底层原理（Proxy）
+- **练习**: 响应式计数器 ref/reactive 对比
+- **路径**: `learning/05-vue3/day2-reactive-system/`
+- **笔记**: `learning/2026-04-07-周二-Vue3响应式系统.md`
+
 #### ✅ Week 5 Day 1 (2026-04-06 周一)
 - **主题**: Vue 3 简介 + Composition API
 - **内容**:
