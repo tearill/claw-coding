@@ -303,17 +303,17 @@
 - **路径**: `learning/05-vue3/day2-reactive-system/`
 - **笔记**: `learning/2026-04-07-周二-Vue3响应式系统.md`
 
-#### ✅ Week 5 Day 1 (2026-04-06 周一)
-- **主题**: Vue 3 简介 + Composition API
+#### ✅ Week 5 Day 3 (2026-04-08 周三)
+- **主题**: A股复盘 + Vue 3 响应式系统复习
 - **内容**:
-  - Vue 3 基本概念与特点
-  - Composition API 核心：ref(), reactive(), onMounted()
-  - `<script setup>` 语法
-  - ref vs reactive 区别
-  - Composition API 优势：逻辑复用、代码组织、TS 支持
-- **练习**: Vue 3 计数器练习
-- **路径**: `learning/05-vue3/day1-composition-api/`
-- **笔记**: `learning/2026-04-06-周一-Vue3核心.md`
+  - A股市场观察（震荡调整期）
+  - Vue 3 响应式系统深度复习
+  - ref vs reactive 对比与选择
+  - Proxy 底层原理
+  - toRef/toRefs/shallowRef 场景
+- **练习**: 响应式系统综合练习
+- **路径**: `learning/05-vue3/`
+- **笔记**: `learning/2026-04-08-周三-A股复盘与前端复习.md`
 
 ```
 claw-coding/
