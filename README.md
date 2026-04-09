@@ -315,7 +315,19 @@
 - **路径**: `learning/05-vue3/`
 - **笔记**: `learning/2026-04-08-周三-A股复盘与前端复习.md`
 
-```
+#### ✅ Week 5 Day 4 (2026-04-09 周四)
+- **主题**: Vue 3 指令 v-if/v-for/v-model
+- **内容**:
+  - v-if/v-else-if/v-else 条件渲染（DOM 销毁 vs CSS display）
+  - v-for 列表渲染（遍历数组、对象、索引）
+  - key 的作用与重要性（唯一标识、渲染性能）
+  - v-model 双向绑定原理与修饰符（.lazy/.number/.trim）
+  - 计算属性 computed 的缓存机制
+- **练习**: Vue 3 指令综合演示页面 + 购物车功能
+- **路径**: `learning/05-vue3/day3-directives/`
+- **笔记**: `learning/2026-04-09-周四-Vue3指令.md`
+
+#### ⏳ Week 5 Day 5 (2026-04-10 周五)
 claw-coding/
 ├── learning/              # 学习练习代码
 │   ├── 01-html-css/
