@@ -327,7 +327,30 @@
 - **路径**: `learning/05-vue3/day3-directives/`
 - **笔记**: `learning/2026-04-09-周四-Vue3指令.md`
 
-#### ⏳ Week 5 Day 5 (2026-04-10 周五)
+#### ✅ Week 5 Day 4 (2026-04-09 周四)
+- **主题**: Vue 3 指令 v-if/v-for/v-model
+- **内容**:
+  - v-if/v-else-if/v-else 条件渲染（DOM 销毁 vs CSS display）
+  - v-for 列表渲染（遍历数组、对象、索引）
+  - key 的作用与重要性（唯一标识、渲染性能）
+  - v-model 双向绑定原理与修饰符（.lazy/.number/.trim）
+  - 计算属性 computed 的缓存机制
+- **练习**: Vue 3 指令综合演示页面 + 购物车功能
+- **路径**: `learning/05-vue3/day3-directives/`
+- **笔记**: `learning/2026-04-09-周四-Vue3指令.md`
+
+#### ✅ Week 5 Day 5 (2026-04-10 周五)
+- **主题**: Vue 3 组件通信 Props/Emits/Provide/Inject
+- **内容**:
+  - Props 声明：数组语法 vs 对象语法 vs TypeScript 类型声明
+  - 单向数据流：props 只读，emit 事件回传
+  - Emits 验证与 TypeScript 支持
+  - Provide/Inject 跨层级通信
+  - 响应式 props 解构（Vue 3.5+）
+  - Boolean 类型转换规则
+- **练习**: 组件通信综合演示（父子通信、跨层级通信、表单验证）
+- **路径**: `learning/05-vue3/day4-component-communication/`
+- **笔记**: `learning/2026-04-10-周五-Vue3组件通信.md`
 claw-coding/
 ├── learning/              # 学习练习代码
 │   ├── 01-html-css/
