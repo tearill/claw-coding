@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pinia 基础演示 - 夜墨学习笔记</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', 'PingFang SC', sans-serif;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+    .container {
+      background: white;
+      border-radius: 16px;
+      padding: 40px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      max-width: 500px;
+      width: 100%;
+    }
+    h1 {
+      color: #667eea;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+    .counter-display {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .count {
+      font-size: 80px;
+      font-weight: bold;
+      color: #667eea;
+    }
+    .info {
+      font-size: 18px;
+      color: #666;
+      margin: 10px 0;
+    }
+    .btn-group {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    button {
+      padding: 12px 24px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s;
+      background: #667eea;
+      color: white;
+    }
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+    }
+    button:active {
+      transform: translateY(0);
+    }
+    .btn-secondary {
+      background: #764ba2;
+    }
+    .btn-outline {
+      background: transparent;
+      border: 2px solid #667eea;
+      color: #667eea;
+    }
+    .btn-outline:hover {
+      background: #667eea;
+      color: white;
+    }
+    .divider {
+      height: 1px;
+      background: #e0e0e0;
+      margin: 30px 0;
+    }
+    .tips {
+      background: #f8f9fa;
+      padding: 20px;
+      border-radius: 8px;
+      margin-top: 20px;
+    }
+    .tips h3 {
+      color: #333;
+      margin-bottom: 10px;
+    }
+    .tips ul {
+      color: #666;
+      padding-left: 20px;
+    }
+    .tips li {
+      margin: 5px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🐈‍⬛ Pinia 计数器</h1>
+    
+    <div class="counter-display">
+      <div class="count" id="count">0</div>
+      <div class="info">名称: <span id="name">夜墨</span></div>
+      <div class="info">双倍: <span id="doubleCount">0</span></div>
+    </div>
+    
+    <div class="btn-group">
+      <button id="decrement">-1</button>
+      <button id="increment">+1</button>
+      <button id="incrementMore" class="btn-secondary">+5</button>
+      <button id="reset" class="btn-outline">重置</button>
+    </div>
+
+    <div class="divider"></div>
+    
+    <div class="btn-group">
+      <button id="changeName" class="btn-outline">改名字</button>
+    </div>
+
+    <div class="tips">
+      <h3>📚 学习要点</h3>
+      <ul>
+        <li><strong>State</strong>: 响应式状态，使用 reactive()</li>
+        <li><strong>Getters</strong>: 计算属性，类似 computed()</li>
+        <li><strong>Actions</strong>: 支持同步和异步</li>
+      </ul>
+    </div>
+  </div>
+
+  <script type="module">
+    // 模拟 Pinia 的简单实现
+    // 实际项目中请使用真正的 Pinia 库
+    
+    // 1. 创建 store
+    function createCounterStore() {
+      // 响应式 state
+      const state = Vue.reactive({
+        count: 0,
+        name: '夜墨'
+      })
+      
+      // getters
+      const doubleCount = Vue.computed(() => state.count * 2)
+      const upperName = Vue.computed(() => state.name.toUpperCase())
+      
+      // actions
+      function increment() {
+        state.count++
+      }
+      
+      function decrement() {
+        state.count--
+      }
+      
+      function incrementBy(amount) {
+        state.count += amount
+      }
+      
+      function reset() {
+        state.count = 0
+      }
+      
+      function setName(newName) {
+        state.name = newName
+      }
+      
+      return {
+        state,
+        doubleCount,
+        upperName,
+        increment,
+        decrement,
+        incrementBy,
+        reset,
+        setName
+      }
+    }
+    
+    // 2. 使用 Vue 3 响应式
+    const { createApp, reactive, computed, ref, onMounted } = Vue
+    
+    const app = createApp({
+      setup() {
+        const store = createCounterStore()
+        
+        // 响应式绑定
+        const count = ref(0)
+        const name = ref('夜墨')
+        const doubleCount = computed(() => count.value * 2)
+        
+        // 初始化显示
+        onMounted(() => {
+          updateDisplay(count.value, name.value, doubleCount.value)
+        })
+        
+        function increment() {
+          count.value++
+          updateDisplay(count.value, name.value, computed(() => count.value * 2).value)
+        }
+        
+        function decrement() {
+          count.value--
+        }
+        
+        return {
+          count,
+          name,
+          doubleCount,
+          increment,
+          decrement
+        }
+      },
+      template: `
+        <div>
+          <div class="count">{{ count }}</div>
+        </div>
+      `
+    })
+    
+    // 简化的响应式系统
+    const Vue = {
+      reactive() {
+        return new Proxy({}, {
+          get(target, key) {
+            return target[key]
+          },
+          set(target, key, value) {
+            target[key] = value
+            return true
+          }
+        })
+      },
+      computed(fn) {
+        let value
+        const computedObj = {
+          get value() {
+            if (!value) value = fn()
+            return value
+          }
+        }
+        return computedObj
+      },
+      ref(initial) {
+        return {
+          value: initial
+        }
+      },
+      onMounted(fn) {
+        fn()
+      },
+      createApp(component) {
+        return {
+          mount() {}
+        }
+      }
+    }
+    
+    // 更新显示的辅助函数
+    function updateDisplay(count, name, doubleCount) {
+      document.getElementById('count').textContent = count
+      document.getElementById('name').textContent = name
+      document.getElementById('doubleCount').textContent = doubleCount
+    }
+    
+    // 事件绑定（模拟 Pinia 的使用方式）
+    let count = 0
+    let name = '夜墨'
+    
+    function updateDisplayAll() {
+      document.getElementById('count').textContent = count
+      document.getElementById('name').textContent = name
+      document.getElementById('doubleCount').textContent = count * 2
+    }
+    
+    document.getElementById('decrement').addEventListener('click', () => {
+      count--
+      updateDisplayAll()
+    })
+    
+    document.getElementById('increment').addEventListener('click', () => {
+      count++
+      updateDisplayAll()
+    })
+    
+    document.getElementById('incrementMore').addEventListener('click', () => {
+      count += 5
+      updateDisplayAll()
+    })
+    
+    document.getElementById('reset').addEventListener('click', () => {
+      count = 0
+      updateDisplayAll()
+    })
+    
+    document.getElementById('changeName').addEventListener('click', () => {
+      const names = ['夜墨', '蔡刚', 'AI助手', '牛马助理']
+      const currentIndex = names.indexOf(name)
+      name = names[(currentIndex + 1) % names.length]
+      updateDisplayAll()
+    })
+  </script>
+</body>
+</html>

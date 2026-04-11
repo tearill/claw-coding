@@ -73,7 +73,7 @@
 - [x] Vue 3 Composition API
 - [x] 响应式系统原理
 - [x] 组件化开发 (v-if/v-for/v-model)
-- [ ] Pinia 状态管理
+- [x] Pinia 状态管理
 - [ ] Vue Router
 
 ---
