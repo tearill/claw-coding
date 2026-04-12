@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue Router 4 路由演示</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; padding: 20px; background: #f5f5f5; }
+    h1 { color: #42b883; margin-bottom: 20px; }
+    .nav { display: flex; gap: 10px; margin-bottom: 20px; }
+    .nav a { padding: 10px 20px; background: #42b883; color: white; text-decoration: none; border-radius: 4px; }
+    .nav a:hover { background: #359268; }
+    .view { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    .route-info { margin-top: 20px; padding: 15px; background: #f0f0f0; border-radius: 4px; }
+    .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px; margin-top: 20px; }
+    .card { padding: 15px; background: #f9f9f9; border: 1px solid #ddd; border-radius: 4px; }
+    .card h3 { color: #42b883; margin-bottom: 10px; }
+  </style>
+</head>
+<body>
+  <h1>🐱 Vue Router 4 路由演示</h1>
+  
+  <div class="nav">
+    <a href="#/">首页</a>
+    <a href="#/about">关于</a>
+    <a href="#/users/1">用户1</a>
+    <a href="#/users/2">用户2</a>
+    <a href="#/posts/123">文章123</a>
+    <a href="#/not-found">404</a>
+  </div>
+  
+  <div id="app"></div>
+  
+  <script type="module">
+    import { createApp, ref, computed, onMounted, onBeforeRouteUpdate } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
+    import { createRouter, createWebHashHistory } from 'https://unpkg.com/vue-router@4/dist/vue-router.esm.js'
+
+    // 1. 定义组件
+    const Home = {
+      template: `
+        <div class="view">
+          <h2>🏠 首页</h2>
+          <p>欢迎来到 Vue Router 学习页面！</p>
+          <div class="route-info">
+            <strong>当前路由信息：</strong>
+            <p>路径: {{ route.path }}</p>
+            <p>完整路径: {{ route.fullPath }}</p>
+          </div>
+        </div>
+      `,
+      setup() {
+        const route = window.router.currentRoute.value
+        return { route }
+      }
+    }
+
+    const About = {
+      template: `
+        <div class="view">
+          <h2>ℹ️ 关于页面</h2>
+          <p>这是一个 Vue Router 4 的演示应用。</p>
+          <div class="route-info">
+            <strong>路由元信息：</strong>
+            <p>title: {{ route.meta.title }}</p>
+          </div>
+        </div>
+      `,
+      setup() {
+        const route = window.router.currentRoute.value
+        return { route }
+      }
+    }
+
+    const User = {
+      template: `
+        <div class="view">
+          <h2>👤 用户详情</h2>
+          <p>用户ID: {{ route.params.id }}</p>
+          <button @click="goToUser(parseInt(route.params.id) + 1)">查看下一个用户</button>
+          <div class="route-info">
+            <strong>所有参数：</strong>
+            <pre>{{ JSON.stringify(route.params, null, 2) }}</pre>
+          </div>
+        </div>
+      `,
+      setup() {
+        const route = window.router.currentRoute.value
+        const router = window.router
+        
+        // 响应路由参数变化
+        onBeforeRouteUpdate((to, from) => {
+          console.log('路由从', from.params.id, '变化到', to.params.id)
+        })
+        
+        const goToUser = (id) => {
+          router.push('/users/' + id)
+        }
+        
+        return { route, goToUser }
+      }
+    }
+
+    const Post = {
+      template: `
+        <div class="view">
+          <h2>📝 文章详情</h2>
+          <p>文章ID: {{ route.params.postId }}</p>
+          <p>查询参数: {{ route.query.category }}</p>
+        </div>
+      `,
+      setup() {
+        const route = window.router.currentRoute.value
+        return { route }
+      }
+    }
+
+    const NotFound = {
+      template: `
+        <div class="view">
+          <h2>❌ 404 - 页面不存在</h2>
+          <p>您访问的页面不存在</p>
+          <a href="#/">返回首页</a>
+        </div>
+      `
+    }
+
+    // 2. 创建路由实例
+    const routes = [
+      { path: '/', component: Home, meta: { title: '首页' } },
+      { path: '/about', component: About, meta: { title: '关于' } },
+      { path: '/users/:id', component: User, meta: { title: '用户' } },
+      { path: '/posts/:postId', component: Post, meta: { title: '文章' } },
+      // 捕获所有路由 - 404
+      { path: '/:pathMatch(.*)*', component: NotFound, name: 'NotFound' }
+    ]
+
+    const router = createRouter({
+      history: createWebHashHistory(),
+      routes
+    })
+
+    // 3. 全局前置守卫
+    router.beforeEach((to, from) => {
+      console.log('导航守卫: 从', from.path, '到', to.path)
+      
+      // 设置页面标题
+      if (to.meta.title) {
+        document.title = to.meta.title + ' - Vue Router Demo'
+      }
+      
+      // 示例：登录验证
+      // if (to.meta.requiresAuth && !isAuthenticated) {
+      //   return '/login'
+      // }
+    })
+
+    // 全局后置钩子
+    router.afterEach((to) => {
+      console.log('导航完成:', to.path)
+    })
+
+    // 4. 创建并挂载应用
+    const app = createApp({
+      template: `
+        <router-view />
+      `
+    })
+
+    app.use(router)
+    app.mount('#app')
+    
+    // 导出 router 供组件使用
+    window.router = router
+  </script>
+</body>
+</html>

@@ -352,17 +352,18 @@
 - **路径**: `learning/05-vue3/day4-component-communication/`
 - **笔记**: `learning/2026-04-10-周五-Vue3组件通信.md`
 
-#### ✅ Week 5 Day 5 (2026-04-11 周六)
-- **主题**: Vue 3 状态管理 Pinia
+#### ✅ Week 5 Day 6 (2026-04-12 周日)
+- **主题**: Vue Router 4 路由与周日学习
 - **内容**:
-  - Pinia 三大核心：State、Getters、Actions
-  - Pinia vs Vuex：更简洁的 API 设计
-  - defineStore 的使用方式
-  - 响应式原理（基于 Proxy）
-  - 多 store 通信
-- **练习**: Pinia 计数器演示
-- **路径**: `learning/05-vue3/day5-pinia/`
-- **笔记**: `learning/2026-04-11-周六-Vue3状态管理Pinia.md`
+  - 动态路由匹配 `:id` 路径参数
+  - 导航守卫：beforeEach/beforeResolve/afterEach
+  - 完整导航解析流程 12 步
+  - 路由元信息 meta 与 404 捕获
+- **练习**: Vue Router 4 综合演示页面
+- **路径**: `learning/05-vue3/day6-vue-router/`
+- **笔记**: `learning/2026-04-12-周日-VueRouter与周日学习.md`
+
+#### ⏳ Week 5 Day 7 (2026-04-13 周一)
 claw-coding/
 ├── learning/              # 学习练习代码
 │   ├── 01-html-css/

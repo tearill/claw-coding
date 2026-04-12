@@ -74,7 +74,7 @@
 - [x] 响应式系统原理
 - [x] 组件化开发 (v-if/v-for/v-model)
 - [x] Pinia 状态管理
-- [ ] Vue Router
+- [x] Vue Router 基础（动态路由、导航守卫）
 
 ---
 
