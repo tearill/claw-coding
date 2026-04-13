@@ -10,7 +10,7 @@
 | Week 2 | JavaScript 基础 | 🔄 进行中 |
 | Week 3 | JavaScript 进阶 & TypeScript | 🔄 进行中 |
 | Week 4 | 浏览器原理与网络 | ✅ 已完成 |
-| Week 5 | Vue 3 核心与生态 | 🔄 进行中 |
+| Week 5 | Vue 3 核心与生态 | ✅ 已完成 |
 | Week 5-6 | Vue 3 核心与生态 | ⏳ |
 | Week 7-8 | React 核心与生态 | ⏳ |
 | Week 9-10 | CSS 框架与实战 | ⏳ |
@@ -364,6 +364,15 @@
 - **笔记**: `learning/2026-04-12-周日-VueRouter与周日学习.md`
 
 #### ⏳ Week 5 Day 7 (2026-04-13 周一)
+- **主题**: Week 5 Vue 3 核心总结
+- **内容**:
+  - Vue 3 Composition API 核心用法
+  - 响应式系统 ref vs reactive
+  - 指令 v-if/v-for/v-model
+  - 组件通信 Props/Emits/Provide/Inject
+  - Pinia 状态管理
+  - Vue Router 4 路由配置
+- **笔记**: `learning/2026-04-13-周一-Week5Vue3核心总结.md`
 claw-coding/
 ├── learning/              # 学习练习代码
 │   ├── 01-html-css/
