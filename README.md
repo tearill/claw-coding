@@ -363,7 +363,7 @@
 - **路径**: `learning/05-vue3/day6-vue-router/`
 - **笔记**: `learning/2026-04-12-周日-VueRouter与周日学习.md`
 
-#### ⏳ Week 5 Day 7 (2026-04-13 周一)
+#### ✅ Week 5 Day 7 (2026-04-13 周一)
 - **主题**: Week 5 Vue 3 核心总结
 - **内容**:
   - Vue 3 Composition API 核心用法
@@ -373,6 +373,21 @@
   - Pinia 状态管理
   - Vue Router 4 路由配置
 - **笔记**: `learning/2026-04-13-周一-Week5Vue3核心总结.md`
+
+#### ✅ Week 6 Day 1 (2026-04-15 周三)
+- **主题**: A股复盘 + Vue 3 核心知识复习
+- **内容**:
+  - A股市场观察（震荡调整期，成交量7000-8000亿）
+  - Vue 3 响应式系统复习（ref vs reactive，Proxy 原理）
+  - 指令系统复习（v-if/v-for/v-model）
+  - 组件通信复习（Props/Emits/Provide/Inject）
+  - Pinia 状态管理回顾
+  - Vue Router 4 路由回顾
+- **笔记**: `learning/2026-04-15-周三-A股复盘与Vue3复习.md`
+
+## 📁 项目结构
+
+```
 claw-coding/
 ├── learning/              # 学习练习代码
 │   ├── 01-html-css/
