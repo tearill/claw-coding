@@ -75,6 +75,7 @@
 - [x] 组件化开发 (v-if/v-for/v-model)
 - [x] Pinia 状态管理
 - [x] Vue Router 基础（动态路由、导航守卫）
+- [x] 插槽 (Slots) 基础与作用域插槽
 
 ---
 

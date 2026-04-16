@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue 3 插槽演示</title>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f5f7fa;
+      padding: 20px;
+      line-height: 1.6;
+    }
+    h1 {
+      color: #42b883;
+      margin-bottom: 20px;
+    }
+    h2 {
+      color: #35495e;
+      margin: 30px 0 15px;
+      font-size: 1.3em;
+    }
+    .card {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      padding: 20px;
+      margin: 15px 0;
+    }
+    .section {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    /* 卡片组件样式 */
+    .card-component {
+      border: 2px solid #42b883;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .card-header {
+      background: #42b883;
+      color: white;
+      padding: 15px 20px;
+      font-weight: bold;
+    }
+    .card-body {
+      padding: 20px;
+    }
+    .card-footer {
+      background: #f8f9fa;
+      padding: 15px 20px;
+      border-top: 1px solid #eee;
+    }
+    /* 按钮组件样式 */
+    .btn {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: all 0.3s;
+    }
+    .btn-primary {
+      background: #42b883;
+      color: white;
+    }
+    .btn-primary:hover {
+      background: #359268;
+    }
+    .btn-secondary {
+      background: #35495e;
+      color: white;
+    }
+    /* 列表组件样式 */
+    .list-items {
+      list-style: none;
+    }
+    .list-item {
+      padding: 12px;
+      border-bottom: 1px solid #eee;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .list-item:last-child {
+      border-bottom: none;
+    }
+    .item-badge {
+      background: #42b883;
+      color: white;
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 12px;
+    }
+    .code-block {
+      background: #2d2d2d;
+      color: #ccc;
+      padding: 15px;
+      border-radius: 6px;
+      font-family: 'Courier New', monospace;
+      font-size: 13px;
+      overflow-x: auto;
+      margin: 10px 0;
+    }
+    .highlight {
+      background: #fff3cd;
+      padding: 2px 4px;
+      border-radius: 3px;
+    }
+    .tips {
+      background: #e7f5ff;
+      border-left: 4px solid #42b883;
+      padding: 15px;
+      margin: 15px 0;
+      border-radius: 0 6px 6px 0;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <h1>🐱 Vue 3 插槽 (Slots) 演示</h1>
+
+    <!-- 示例 1: 默认插槽 -->
+    <div class="section">
+      <h2>1. 默认插槽 (Default Slot)</h2>
+      <p>最基本的插槽用法，子组件提供插槽出口，父组件提供内容</p>
+      
+      <div class="code-block">
+// 子组件模板
+&lt;button class="btn btn-primary"&gt;
+  &lt;slot&gt;默认文本&lt;/slot&gt;  // 后备内容
+&lt;/button&gt;
+
+// 父组件使用
+&lt;MyButton&gt;点击我&lt;/MyButton&gt;</div>
+
+      <!-- 实际演示 -->
+      <div class="card">
+        <h3>基础按钮</h3>
+        <my-button>点击我 🐾</my-button>
+      </div>
+      <div class="card">
+        <h3>使用默认内容</h3>
+        <my-button></my-button>
+      </div>
+    </div>
+
+    <!-- 示例 2: 具名插槽 -->
+    <div class="section">
+      <h2>2. 具名插槽 (Named Slots)</h2>
+      <p>多个插槽时使用 name 属性区分，用 v-slot 或 # 简写</p>
+      
+      <div class="code-block">
+// 子组件
+&lt;div class="card-component"&gt;
+  &lt;div class="card-header"&gt;&lt;slot name="header"&gt;&lt;/slot&gt;&lt;/div&gt;
+  &lt;div class="card-body"&gt;&lt;slot&gt;&lt;/slot&gt;&lt;/div&gt;
+  &lt;div class="card-footer"&gt;&lt;slot name="footer"&gt;&lt;/slot&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+// 父组件
+&lt;my-card&gt;
+  &lt;template #header&gt;标题&lt;/template&gt;
+  &lt;template #default&gt;内容主体&lt;/template&gt;
+  &lt;template #footer&gt;底部&lt;/template&gt;
+&lt;/my-card&gt;</div>
+
+      <div class="card">
+        <my-card>
+          <template #header>🐱 我的卡片</template>
+          <template #default>
+            <p>这是卡片的主体内容，可以放任何 HTML。</p>
+            <p>甚至可以放组件！</p>
+          </template>
+          <template #footer>
+            <small>2026-04-16</small>
+          </template>
+        </my-card>
+      </div>
+    </div>
+
+    <!-- 示例 3: 作用域插槽 -->
+    <div class="section">
+      <h2>3. 作用域插槽 (Scoped Slots)</h2>
+      <p>子组件通过插槽向父组件暴露数据，父组件决定如何渲染</p>
+      
+      <div class="code-block">
+// 子组件 List
+&lt;ul&gt;
+  &lt;li v-for="item in items" :key="item.id"&gt;
+    &lt;slot :item="item" :index="$index"&gt;&lt;/slot&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+// 父组件
+&lt;my-list :items="products"&gt;
+  &lt;template #default="{ item, index }"&gt;
+    {{ index + 1 }}. {{ item.name }} - ¥{{ item.price }}
+  &lt;/template&gt;
+&lt;/my-list&gt;</div>
+
+      <div class="card">
+        <h3>产品列表 (自定义渲染)</h3>
+        <my-list :items="products">
+          <template #default="{ item, index }">
+            <span>{{ index + 1 }}. <strong>{{ item.name }}</strong></span>
+            <span class="item-badge">¥{{ item.price }}</span>
+          </template>
+        </my-list>
+      </div>
+      <div class="card">
+        <h3>用户列表 (另一种渲染)</h3>
+        <my-list :items="users">
+          <template #default="{ item }">
+            <span>👤 {{ item.name }}</span>
+            <span style="color: #666;">{{ item.email }}</span>
+          </template>
+        </my-list>
+      </div>
+    </div>
+
+    <!-- 示例 4: 条件插槽 -->
+    <div class="section">
+      <h2>4. 条件插槽 (Conditional Slots)</h2>
+      <p>使用 $slots 判断是否有内容传入，动态显示不同样式</p>
+      
+      <div class="code-block">
+// 子组件
+&lt;div class="card" :class="{ 'has-header': $slots.header, 'has-footer': $slots.footer }"&gt;
+  &lt;div v-if="$slots.header" class="card-header"&gt;
+    &lt;slot name="header"&gt;&lt;/slot&gt;
+  &lt;/div&gt;
+  &lt;div class="card-body"&gt;
+    &lt;slot&gt;&lt;/slot&gt;
+  &lt;/div&gt;
+  &lt;div v-if="$slots.footer" class="card-footer"&gt;
+    &lt;slot name="footer"&gt;&lt;/slot&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</div>
+
+      <div class="card">
+        <conditional-card>
+          <template #header>完整卡片</template>
+          这是一个完整的卡片，有 header 和 footer
+          <template #footer>底部信息</template>
+        </conditional-card>
+      </div>
+      <div class="card">
+        <conditional-card>
+          简单卡片 - 只有默认内容
+        </conditional-card>
+      </div>
+    </div>
+
+    <!-- 总结 -->
+    <div class="tips">
+      <h3>💡 插槽要点总结</h3>
+      <ul>
+        <li><strong>插槽内容</strong>在父组件作用域中定义</li>
+        <li><strong>插槽出口</strong>在子组件模板中</li>
+        <li><strong>作用域插槽</strong>允许子组件向父组件暴露数据</li>
+        <li><strong>#</strong> 是 <code>v-slot:</code> 的简写</li>
+        <li><strong>$slots</strong> 可用于判断插槽是否被使用</li>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    const { createApp, ref, reactive } = Vue
+
+    // 1. 基础按钮组件 - 默认插槽 + 默认内容
+    const MyButton = {
+      template: `
+        <button class="btn btn-primary">
+          <slot>默认按钮</slot>
+        </button>
+      `
+    }
+
+    // 2. 卡片组件 - 具名插槽
+    const MyCard = {
+      template: `
+        <div class="card-component">
+          <div class="card-header">
+            <slot name="header">默认标题</slot>
+          </div>
+          <div class="card-body">
+            <slot>默认内容</slot>
+          </div>
+          <div class="card-footer">
+            <slot name="footer"></slot>
+          </div>
+        </div>
+      `
+    }
+
+    // 3. 列表组件 - 作用域插槽
+    const MyList = {
+      props: {
+        items: {
+          type: Array,
+          default: () => []
+        }
+      },
+      template: `
+        <ul class="list-items">
+          <li v-for="(item, index) in items" :key="item.id" class="list-item">
+            <slot :item="item" :index="index"></slot>
+          </li>
+        </ul>
+      `
+    }
+
+    // 4. 条件卡片组件 - 根据有无插槽显示不同样式
+    const ConditionalCard = {
+      template: `
+        <div class="card-component" :style="cardStyle">
+          <div v-if="$slots.header" class="card-header">
+            <slot name="header"></slot>
+          </div>
+          <div class="card-body">
+            <slot>默认内容</slot>
+          </div>
+          <div v-if="$slots.footer" class="card-footer">
+            <slot name="footer"></slot>
+          </div>
+        </div>
+      `,
+      computed: {
+        cardStyle() {
+          const hasHeader = this.$slots.header
+          const hasFooter = this.$slots.footer
+          if (!hasHeader && !hasFooter) {
+            return { borderColor: '#ddd' }
+          }
+          return {}
+        }
+      }
+    }
+
+    // 创建应用
+    const app = createApp({
+      components: {
+        MyButton,
+        MyCard,
+        MyList,
+        ConditionalCard
+      },
+      setup() {
+        // 产品列表数据
+        const products = reactive([
+          { id: 1, name: 'MacBook Pro', price: 12999 },
+          { id: 2, name: 'iPhone 15', price: 5999 },
+          { id: 3, name: 'iPad Pro', price: 4999 }
+        ])
+
+        // 用户列表数据
+        const users = reactive([
+          { id: 1, name: '张三', email: 'zhangsan@example.com' },
+          { id: 2, name: '李四', email: 'lisi@example.com' }
+        ])
+
+        return {
+          products,
+          users
+        }
+      }
+    })
+
+    app.mount('#app')
+  </script>
+</body>
+</html>
