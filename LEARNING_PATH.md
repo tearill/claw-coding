@@ -76,6 +76,9 @@
 - [x] Pinia 状态管理
 - [x] Vue Router 基础（动态路由、导航守卫）
 - [x] 插槽 (Slots) 基础与作用域插槽
+- [x] **Teleport 传送门**（模态框、下拉菜单等场景）
+- [x] **Suspense 异步组件**（实验性 API）
+- [x] **Vue 3 动画与过渡**（Transition、TransitionGroup）
 
 ---
 

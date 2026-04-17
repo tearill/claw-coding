@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue 3 进阶特性 - Teleport / Suspense / 动画与过渡</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 20px;
+    }
+    
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    
+    h1 {
+      color: white;
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 2em;
+    }
+    
+    .section {
+      background: white;
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 20px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    }
+    
+    h2 {
+      color: #333;
+      margin-bottom: 16px;
+      font-size: 1.3em;
+      border-left: 4px solid #667eea;
+      padding-left: 12px;
+    }
+    
+    h3 {
+      color: #555;
+      margin: 16px 0 8px;
+      font-size: 1em;
+    }
+    
+    p, li {
+      color: #666;
+      line-height: 1.8;
+      margin-bottom: 8px;
+    }
+    
+    ul {
+      padding-left: 20px;
+    }
+    
+    code {
+      background: #f5f5f5;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-family: 'Consolas', monospace;
+      color: #e83e8c;
+      font-size: 0.9em;
+    }
+    
+    pre {
+      background: #2d2d2d;
+      color: #ccc;
+      padding: 16px;
+      border-radius: 8px;
+      overflow-x: auto;
+      margin: 12px 0;
+    }
+    
+    pre code {
+      background: none;
+      color: #ccc;
+      padding: 0;
+    }
+    
+    .demo-box {
+      border: 2px solid #eee;
+      border-radius: 8px;
+      padding: 16px;
+      margin: 12px 0;
+    }
+    
+    .demo-title {
+      font-weight: bold;
+      color: #667eea;
+      margin-bottom: 12px;
+    }
+    
+    /* Teleport Demo */
+    .teleport-btn {
+      background: #667eea;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+      margin-right: 10px;
+      margin-bottom: 10px;
+      transition: transform 0.2s;
+    }
+    
+    .teleport-btn:hover {
+      transform: scale(1.05);
+    }
+    
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+    }
+    
+    .modal-content {
+      background: white;
+      padding: 24px;
+      border-radius: 12px;
+      max-width: 400px;
+      text-align: center;
+    }
+    
+    .modal-title {
+      font-size: 1.2em;
+      font-weight: bold;
+      margin-bottom: 16px;
+      color: #333;
+    }
+    
+    .modal-close {
+      background: #e74c3c;
+      color: white;
+      border: none;
+      padding: 8px 24px;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 16px;
+    }
+    
+    /* Suspense Demo */
+    .suspense-loading {
+      background: #f8f9fa;
+      padding: 20px;
+      border-radius: 8px;
+      text-align: center;
+      color: #666;
+    }
+    
+    .spinner {
+      width: 40px;
+      height: 40px;
+      border: 4px solid #f3f3f3;
+      border-top: 4px solid #667eea;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 12px;
+    }
+    
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    
+    /* Transition Demo */
+    .transition-box {
+      width: 100px;
+      height: 100px;
+      background: #667eea;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      border-radius: 8px;
+      margin: 10px 0;
+    }
+    
+    .fade-enter-active,
+    .fade-leave-active {
+      transition: opacity 0.5s ease;
+    }
+    
+    .fade-enter-from,
+    .fade-leave-to {
+      opacity: 0;
+    }
+    
+    .slide-enter-active,
+    .slide-leave-active {
+      transition: transform 0.5s ease, opacity 0.5s ease;
+    }
+    
+    .slide-enter-from {
+      transform: translateX(-100px);
+      opacity: 0;
+    }
+    
+    .slide-leave-to {
+      transform: translateX(100px);
+      opacity: 0;
+    }
+    
+    .scale-enter-active,
+    .scale-leave-active {
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+    
+    .scale-enter-from,
+    .scale-leave-to {
+      transform: scale(0);
+      opacity: 0;
+    }
+    
+    .list-enter-active,
+    .list-leave-active {
+      transition: all 0.5s ease;
+    }
+    
+    .list-enter-from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    
+    .list-leave-to {
+      opacity: 0;
+      transform: translateY(-30px);
+    }
+    
+    .list-move {
+      transition: transform 0.5s ease;
+    }
+    
+    .controls {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+    
+    .key-point {
+      background: #e8f4fd;
+      border-left: 4px solid #2196F3;
+      padding: 12px 16px;
+      margin: 12px 0;
+      border-radius: 0 8px 8px 0;
+    }
+    
+    .warning {
+      background: #fff3cd;
+      border-left: 4px solid #ffc107;
+      padding: 12px 16px;
+      margin: 12px 0;
+      border-radius: 0 8px 8px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1> Vue 3 进阶特性</h1>
+    
+    <!-- Teleport -->
+    <div class="section">
+      <h2>1. Teleport 传送门</h2>
+      <p>Teleport 是 Vue 3 提供的一个内置组件，可以将组件的模板部分渲染到 DOM 中的指定位置，而不是当前组件的位置。</p>
+      
+      <div class="key-point">
+        <strong>📌 核心作用：</strong>将子组件渲染到父组件 DOM 结构之外的指定位置
+      </div>
+      
+      <h3>使用场景</h3>
+      <ul>
+        <li>模态框 (Modal)</li>
+        <li>下拉菜单 (Dropdown)</li>
+        <li>工具提示 (Tooltip)</li>
+        <li>Toast 通知</li>
+      </ul>
+      
+      <h3>语法</h3>
+      <pre><code>&lt;Teleport to="body"&gt;
+  &lt;div class="modal"&gt;内容&lt;/div&gt;
+&lt;/Teleport&gt;</code></pre>
+      
+      <h3>实际演示</h3>
+      <div class="demo-box">
+        <div class="demo-title">点击按钮打开模态框（使用 Teleport 传送到 body）</div>
+        <div class="controls">
+          <button class="teleport-btn" onclick="openModal()">打开 Modal (to: body)</button>
+          <button class="teleport-btn" onclick="openModal2()">打开 Modal (to: #app)</button>
+        </div>
+        <p style="font-size: 12px; color: #999;">提示：打开后查看 Elements 面板，modal 会在 &lt;body&gt; 或 #app 外</p>
+      </div>
+      
+      <h3>禁用 Teleport</h3>
+      <pre><code>&lt;Teleport to="body" :disabled="isDisabled"&gt;
+  &lt;div&gt;内容&lt;/div&gt;
+&lt;/Teleport&gt;</code></pre>
+    </div>
+    
+    <!-- Suspense -->
+    <div class="section">
+      <h2>2. Suspense 异步组件</h2>
+      <p>Suspense 是一个内置组件，用于在异步组件等待时展示 fallback 内容。</p>
+      
+      <div class="key-point">
+        <strong>📌 核心作用：</strong>优雅处理异步组件的加载状态
+      </div>
+      
+      <h3>使用场景</h3>
+      <ul>
+        <li>异步组件（setup 返回 Promise）</li>
+        <li>async setup() 组件</li>
+        <li>带有顶层 await 的 setup()</li>
+      </ul>
+      
+      <h3>语法</h3>
+      <pre><code>&lt;Suspense&gt;
+  &lt;template #default&gt;
+    &lt;AsyncComponent /&gt;
+  &lt;/template&gt;
+  &lt;template #fallback&gt;
+    &lt;Loading /&gt;
+  &lt;/template&gt;
+&lt;/Suspense&gt;</code></pre>
+      
+      <h3>实际演示</h3>
+      <div class="demo-box">
+        <div class="demo-title">模拟异步组件加载</div>
+        <button class="teleport-btn" onclick="loadAsyncComponent()">加载异步组件</button>
+        <div id="suspense-demo"></div>
+      </div>
+      
+      <div class="warning">
+        <strong>⚠️ 注意：</strong>Suspense 目前是实验性 API，主要用于 Vue 3 的新特性配合
+      </div>
+    </div>
+    
+    <!-- Transitions -->
+    <div class="section">
+      <h2>3. Vue 3 动画与过渡</h2>
+      <p>Vue 提供了 &lt;Transition&gt; 和 &lt;TransitionGroup&gt; 组件，用于在元素插入/移除时添加动画效果。</p>
+      
+      <h3>CSS 过渡动画</h3>
+      <div class="demo-box">
+        <div class="demo-title">Fade 淡入淡出</div>
+        <div class="controls">
+          <button class="teleport-btn" onclick="toggleFade()">切换显示</button>
+        </div>
+        <div id="fade-demo" style="display: none;">
+          <div class="transition-box">淡入淡出</div>
+        </div>
+      </div>
+      
+      <h3>滑动动画</h3>
+      <div class="demo-box">
+        <div class="demo-title">Slide 滑动效果</div>
+        <div class="controls">
+          <button class="teleport-btn" onclick="toggleSlide()">切换显示</button>
+        </div>
+        <div id="slide-demo" style="display: none;">
+          <div class="transition-box" style="transform: translateX(0);">滑动效果</div>
+        </div>
+      </div>
+      
+      <h3>缩放动画</h3>
+      <div class="demo-box">
+        <div class="demo-title">Scale 缩放效果</div>
+        <div class="controls">
+          <button class="teleport-btn" onclick="toggleScale()">切换显示</button>
+        </div>
+        <div id="scale-demo" style="display: none;">
+          <div class="transition-box">缩放效果</div>
+        </div>
+      </div>
+      
+      <h3>列表动画</h3>
+      <div class="demo-box">
+        <div class="demo-title">TransitionGroup 列表动画</div>
+        <div class="controls">
+          <button class="teleport-btn" onclick="addItem()">添加</button>
+          <button class="teleport-btn" onclick="removeItem()">移除</button>
+        </div>
+        <ul id="list-demo" style="list-style: none; padding: 0;">
+          <li style="padding: 8px; margin: 4px 0; background: #f0f0f0; border-radius: 4px;">项目 1</li>
+          <li style="padding: 8px; margin: 4px 0; background: #f0f0f0; border-radius: 4px;">项目 2</li>
+        </ul>
+      </div>
+      
+      <h3>过渡类名</h3>
+      <pre><code>/* 进入时 */
+.v-enter-active { transition: opacity 0.5s; }
+.v-enter-from { opacity: 0; }
+
+/* 离开时 */
+.v-leave-active { transition: opacity 0.5s; }
+.v-leave-to { opacity: 0; }</code></pre>
+    </div>
+    
+    <!-- 总结 -->
+    <div class="section">
+      <h2>📝 总结</h2>
+      <ul>
+        <li><strong>Teleport</strong>: 将组件渲染到指定 DOM 位置，适合模态框等场景</li>
+        <li><strong>Suspense</strong>: 处理异步组件的加载状态，需要配合异步组件使用</li>
+        <li><strong>Transition</strong>: 为元素的插入/移除添加动画效果</li>
+        <li><strong>TransitionGroup</strong>: 为列表添加动画，支持移动过渡</li>
+      </ul>
+      
+      <div class="key-point">
+        <strong>💡 提示：</strong>Vue 3 的动画系统基于 CSS transition，配合 JavaScript 钩子可以完成更复杂的效果
+      </div>
+    </div>
+  </div>
+  
+  <!-- Modal 容器（会被 Teleport 使用） -->
+  <div id="modal-container"></div>
+  
+  <script>
+    // ========== Teleport Demo ==========
+    function openModal() {
+      const modalHTML = `
+        <div class="modal-overlay" onclick="closeModal(event)">
+          <div class="modal-content">
+            <div class="modal-title">🎉 模态框示例</div>
+            <p>这个模态框使用 Teleport 传送到了 &lt;body&gt; 标签下！</p>
+            <p style="font-size: 12px; color: #999; margin-top: 8px;">点击遮罩层关闭</p>
+            <button class="modal-close" onclick="closeModalBtn()">关闭</button>
+          </div>
+        </div>
+      `;
+      
+      // 使用 teleport 逻辑：将 modal 添加到 body
+      const temp = document.createElement('div');
+      temp.innerHTML = modalHTML;
+      document.body.appendChild(temp.firstElementChild);
+    }
+    
+    function openModal2() {
+      const modalHTML = `
+        <div class="modal-overlay" onclick="closeModal(event)">
+          <div class="modal-content">
+            <div class="modal-title">📦 模态框示例</div>
+            <p>这个模态框被传送到 #modal-container 中！</p>
+            <button class="modal-close" onclick="closeModalBtn()">关闭</button>
+          </div>
+        </div>
+      `;
+      
+      const container = document.getElementById('modal-container');
+      container.innerHTML = modalHTML;
+    }
+    
+    function closeModal(event) {
+      if (event.target.classList.contains('modal-overlay')) {
+        event.target.remove();
+      }
+    }
+    
+    function closeModalBtn() {
+      document.querySelector('.modal-overlay')?.remove();
+    }
+    
+    // ========== Suspense Demo ==========
+    let suspenseLoaded = false;
+    
+    function loadAsyncComponent() {
+      const demo = document.getElementById('suspense-demo');
+      
+      if (suspenseLoaded) {
+        demo.innerHTML = '<p style="color: #666;">组件已加载（模拟效果）</p>';
+        return;
+      }
+      
+      // 模拟加载状态
+      demo.innerHTML = `
+        <div class="suspense-loading">
+          <div class="spinner"></div>
+          <p>正在加载异步组件...</p>
+        </div>
+      `;
+      
+      // 模拟异步加载完成
+      setTimeout(() => {
+        suspenseLoaded = true;
+        demo.innerHTML = `
+          <div class="demo-box" style="background: #e8f5e9; border-color: #4caf50;">
+            <div class="demo-title" style="color: #2e7d32;">✅ 异步组件加载完成！</div>
+            <p>Suspense 展示了 loading 状态，组件加载完成后自动切换</p>
+          </div>
+        `;
+      }, 1500);
+    }
+    
+    // ========== Transition Demos ==========
+    let fadeShow = false;
+    function toggleFade() {
+      fadeShow = !fadeShow;
+      const demo = document.getElementById('fade-demo');
+      if (fadeShow) {
+        demo.style.display = 'block';
+        demo.style.opacity = '0';
+        setTimeout(() => demo.style.opacity = '1', 10);
+      } else {
+        demo.style.opacity = '0';
+        setTimeout(() => demo.style.display = 'none', 500);
+      }
+    }
+    
+    let slideShow = false;
+    function toggleSlide() {
+      slideShow = !slideShow;
+      const demo = document.getElementById('slide-demo');
+      if (slideShow) {
+        demo.style.display = 'block';
+        demo.firstElementChild.style.transform = 'translateX(-100px)';
+        setTimeout(() => demo.firstElementChild.style.transform = 'translateX(0)', 10);
+      } else {
+        demo.firstElementChild.style.transform = 'translateX(100px)';
+        setTimeout(() => demo.style.display = 'none', 500);
+      }
+    }
+    
+    let scaleShow = false;
+    function toggleScale() {
+      scaleShow = !scaleShow;
+      const demo = document.getElementById('scale-demo');
+      if (scaleShow) {
+        demo.style.display = 'block';
+        demo.firstElementChild.style.transform = 'scale(0)';
+        setTimeout(() => demo.firstElementChild.style.transform = 'scale(1)', 10);
+      } else {
+        demo.firstElementChild.style.transform = 'scale(0)';
+        setTimeout(() => demo.style.display = 'none', 300);
+      }
+    }
+    
+    // ========== List Demo ==========
+    let itemCount = 2;
+    function addItem() {
+      itemCount++;
+      const list = document.getElementById('list-demo');
+      const li = document.createElement('li');
+      li.textContent = `项目 ${itemCount}`;
+      li.style.padding = '8px';
+      li.style.margin = '4px 0';
+      li.style.background = '#f0f0f0';
+      li.style.borderRadius = '4px';
+      li.style.animation = 'fadeIn 0.3s ease';
+      list.appendChild(li);
+    }
+    
+    function removeItem() {
+      const list = document.getElementById('list-demo');
+      if (list.lastElementChild) {
+        list.lastElementChild.remove();
+        itemCount--;
+      }
+    }
+    
+    // 添加 fadeIn 动画
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+    `;
+    document.head.appendChild(style);
+  </script>
+</body>
+</html>

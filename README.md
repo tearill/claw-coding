@@ -396,7 +396,16 @@
   - Vue Router 4 路由回顾
 - **笔记**: `learning/2026-04-15-周三-A股复盘与Vue3复习.md`
 
-## 📁 项目结构
+#### ✅ Week 6 Day 2 (2026-04-17 周五)
+- **主题**: Vue 3 进阶特性 - Teleport / Suspense / 动画与过渡
+- **内容**:
+  - Teleport 传送门：渲染到指定 DOM 位置，模态框、下拉菜单场景
+  - Suspense 异步组件：优雅处理异步组件的加载状态（实验性 API）
+  - Vue 3 动画系统：Transition 单元素过渡、TransitionGroup 列表动画
+  - 过渡类名：v-enter-active, v-enter-from, v-leave-to 等
+- **练习**: Vue 3 进阶特性交互式演示页面
+- **路径**: `learning/05-vue3/day7-teleport-suspense-animations/`
+- **笔记**: `learning/2026-04-17-周五-Vue3进阶特性.md`
 
 ```
 claw-coding/
