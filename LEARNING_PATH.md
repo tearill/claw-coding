@@ -234,7 +234,7 @@
 - [x] Autonomous vs Prompted Crons 定时任务新模式
 - [x] Verify Implementation, Not Intent 实现验证原则
 - [x] ADL Protocol 与 VFM Protocol 安全护栏
-- [ ] 深入实践：在项目中应用 Proactive Agent 架构
+- [x] 深入实践：在项目中应用 Proactive Agent 架构
 
 ---
 

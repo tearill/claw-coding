@@ -407,6 +407,19 @@
 - **路径**: `learning/05-vue3/day7-teleport-suspense-animations/`
 - **笔记**: `learning/2026-04-17-周五-Vue3进阶特性.md`
 
+#### ✅ Week 6 Day 3 (2026-04-18 周六)
+- **主题**: AI Agent - Proactive Agent 深入实践
+- **内容**:
+  - WAL Protocol 预写日志协议
+  - Working Buffer Protocol 工作缓冲区
+  - Compaction Recovery 压缩恢复
+  - Autonomous vs Prompted Crons
+  - 在项目中创建 SESSION-STATE.md 和 working-buffer.md
+- **练习**: 创建 Proactive Agent 核心文件模板
+- **路径**: `learning/SESSION-STATE.md` - [SESSION-STATE.md](https://github.com/tearill/claw-coding/tree/master/)
+- **路径**: `memory/working-buffer.md` - [working-buffer.md](https://github.com/tearill/claw-coding/tree/master/memory/)
+- **笔记**: `learning/2026-04-18-周六-ProactiveAgent深入实践.md`
+
 ```
 claw-coding/
 ├── learning/              # 学习练习代码
