@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React JSX 语法演示</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        h1 {
+            color: #fff;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+        .section {
+            background: #fff;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        .section h2 {
+            color: #333;
+            margin-bottom: 16px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #667eea;
+        }
+        .code-block {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 16px;
+            border-radius: 8px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 14px;
+            line-height: 1.6;
+            overflow-x: auto;
+            margin: 12px 0;
+        }
+        .code-block .keyword { color: #c586c0; }
+        .code-block .string { color: #ce9178; }
+        .code-block .tag { color: #569cd6; }
+        .code-block .attr { color: #9cdcfe; }
+        .demo-box {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-top: 16px;
+        }
+        .demo-item {
+            flex: 1;
+            min-width: 200px;
+            background: #f5f5f5;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .demo-item h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        .btn {
+            background: #667eea;
+            color: #fff;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 8px 4px;
+            transition: all 0.3s ease;
+        }
+        .btn:hover {
+            background: #764ba2;
+            transform: translateY(-2px);
+        }
+        .btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .counter {
+            font-size: 48px;
+            color: #667eea;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+        .input-field {
+            padding: 10px 16px;
+            font-size: 16px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            width: 200px;
+            margin: 8px 0;
+        }
+        .input-field:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            margin: 8px 0;
+        }
+        .checkbox-label input {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+        .js-output {
+            background: #f0f0f0;
+            padding: 12px;
+            border-radius: 6px;
+            margin-top: 12px;
+            font-family: monospace;
+            white-space: pre-wrap;
+        }
+        .rule-list {
+            list-style: none;
+            padding: 0;
+        }
+        .rule-list li {
+            padding: 12px 16px;
+            margin: 8px 0;
+            background: #f8f9fa;
+            border-radius: 6px;
+            border-left: 4px solid #667eea;
+        }
+        .rule-list li strong {
+            color: #667eea;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        // ========== 1. 基础组件 ==========
+        function Welcome() {
+            return <h1>Hello, React! 🐈‍⬛</h1>;
+        }
+
+        // ========== 2. 带Props的组件 ==========
+        function UserCard({ name, age, city }) {
+            return (
+                <div className="demo-item">
+                    <h3>👤 {name}</h3>
+                    <p>年龄: {age}</p>
+                    <p>城市: {city}</p>
+                </div>
+            );
+        }
+
+        // ========== 3. 使用State的组件 ==========
+        function Counter() {
+            const [count, setCount] = React.useState(0);
+            
+            return (
+                <div className="demo-item">
+                    <h3>计数器</h3>
+                    <div className="counter">{count}</div>
+                    <button className="btn" onClick={() => setCount(count - 1)}>- 1</button>
+                    <button className="btn" onClick={() => setCount(0)}>重置</button>
+                    <button className="btn" onClick={() => setCount(count + 1)}>+ 1</button>
+                </div>
+            );
+        }
+
+        // ========== 4. 表单组件 ==========
+        function FormDemo() {
+            const [text, setText] = React.useState('');
+            const [checked, setChecked] = React.useState(false);
+            
+            return (
+                <div className="demo-item">
+                    <h3>表单演示</h3>
+                    <input 
+                        type="text" 
+                        className="input-field"
+                        value={text}
+                        onChange={(e) => setText(e.target.value)}
+                        placeholder="输入一些文字..."
+                    />
+                    <p>输入内容: {text}</p>
+                    
+                    <label className="checkbox-label">
+                        <input 
+                            type="checkbox" 
+                            checked={checked}
+                            onChange={(e) => setChecked(e.target.checked)}
+                        />
+                        我已阅读并同意协议
+                    </label>
+                    <button className="btn" disabled={!checked}>
+                        提交 {checked ? '✓' : '(请勾选)'}
+                    </button>
+                </div>
+            );
+        }
+
+        // ========== 5. 列表渲染 ==========
+        function ListDemo() {
+            const items = ['Vue', 'React', 'Angular', 'Svelte'];
+            
+            return (
+                <div className="demo-item">
+                    <h3>前端框架</h3>
+                    <ul>
+                        {items.map((item, index) => (
+                            <li key={index} style={{ padding: '8px 0' }}>
+                                {index + 1}. {item}
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            );
+        }
+
+        // ========== 6. JSX vs createElement ==========
+        function JsxVsCreateElement() {
+            const [showCode, setShowCode] = React.useState(false);
+            
+            // 这是JSX代码
+            const jsxCode = `// JSX 写法
+const element = <h1 className="title">Hello</h1>;`;
+            
+            // 编译后的createElement
+            const createElementCode = `// 编译后的 JavaScript
+const element = React.createElement(
+  'h1',
+  { className: 'title' },
+  'Hello'
+);`;
+            
+            return (
+                <div className="demo-item">
+                    <h3>JSX vs createElement</h3>
+                    <button className="btn" onClick={() => setShowCode(!showCode)}>
+                        {showCode ? '显示 JSX' : '显示编译结果'}
+                    </button>
+                    <div className="js-output">
+                        {showCode ? createElementCode : jsxCode}
+                    </div>
+                </div>
+            );
+        }
+
+        // ========== 主应用 ==========
+        function App() {
+            return (
+                <div className="container">
+                    <h1>🐈‍⬛ React JSX 语法演示</h1>
+                    
+                    {/* 规则说明 */}
+                    <div className="section">
+                        <h2>📝 JSX 基本规则</h2>
+                        <ul className="rule-list">
+                            <li><strong>根元素：</strong>必须只有一个根元素，可用 &lt;div&gt; 或 &lt;React.Fragment&gt; 包裹</li>
+                            <li><strong>标签闭合：</strong>自闭合标签如 &lt;img /&gt; 必须闭合</li>
+                            <li><strong>className：</strong>HTML 的 class 改为 className</li>
+                            <li><strong>驼峰属性：</strong>如 tabIndex, onClick, defaultValue 等</li>
+                            <li><strong>布尔属性：</strong>disabled, checked 等可只写属性名</li>
+                        </ul>
+                    </div>
+                    
+                    {/* 基础示例 */}
+                    <div className="section">
+                        <h2>🏠 1. 最简单的组件</h2>
+                        <Welcome />
+                    </div>
+                    
+                    {/* Props 示例 */}
+                    <div className="section">
+                        <h2>👤 2. 组件 Props（属性）</h2>
+                        <div className="demo-box">
+                            <UserCard name="夜墨" age="2岁" city="北京" />
+                            <UserCard name="Horace" age="18+" city="北京" />
+                        </div>
+                    </div>
+                    
+                    {/* State 示例 */}
+                    <div className="section">
+                        <h2>🔢 3. State 状态</h2>
+                        <Counter />
+                    </div>
+                    
+                    {/* 表单示例 */}
+                    <div className="section">
+                        <h2>📝 4. 表单与双向绑定</h2>
+                        <FormDemo />
+                    </div>
+                    
+                    {/* 列表示例 */}
+                    <div className="section">
+                        <h2>📋 5. 列表渲染</h2>
+                        <div className="demo-box">
+                            <ListDemo />
+                        </div>
+                    </div>
+                    
+                    {/* JSX 原理 */}
+                    <div className="section">
+                        <h2>🔧 6. JSX 原理</h2>
+                        <JsxVsCreateElement />
+                    </div>
+                </div>
+            );
+        }
+
+        // 渲染应用
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>

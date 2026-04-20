@@ -12,7 +12,7 @@
 | Week 4 | 浏览器原理与网络 | ✅ 已完成 |
 | Week 5 | Vue 3 核心与生态 | ✅ 已完成 |
 | Week 6 | Vue 3 生态与组件化 | 🔄 进行中 |
-| Week 7-8 | React 核心与生态 | ⏳ |
+| Week 7-8 | React 核心与生态 | 🔄 进行中 |
 | Week 9-10 | CSS 框架与实战 | ⏳ |
 | Week 11-16 | 底层原理 + Node.js | ⏳ |
 | Week 17-24 | 工程化 + 全栈实战 | ⏳ |
@@ -419,6 +419,17 @@
 - **路径**: `learning/SESSION-STATE.md` - [SESSION-STATE.md](https://github.com/tearill/claw-coding/tree/master/)
 - **路径**: `memory/working-buffer.md` - [working-buffer.md](https://github.com/tearill/claw-coding/tree/master/memory/)
 - **笔记**: `learning/2026-04-18-周六-ProactiveAgent深入实践.md`
+
+#### ✅ Week 7 Day 1 (2026-04-20 周一)
+- **主题**: React 简介与 JSX
+- **内容**:
+  - React 核心特点：组件化、声明式、单项数据流、虚拟DOM
+  - JSX 语法规则：根元素、className、驼峰属性
+  - JSX 与 React.createElement 关系
+  - 在页面中使用 React（CDN 方式）
+- **练习**: React JSX 交互式演示页面
+- **路径**: `learning/07-react/day1-intro-jsx/`
+- **笔记**: `learning/2026-04-20-周一-React简介与JSX.md`
 
 ```
 claw-coding/
