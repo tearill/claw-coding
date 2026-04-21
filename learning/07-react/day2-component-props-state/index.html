@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>React 组件、Props 与 State 演示</title>
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 20px;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    h1 {
+      color: white;
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 2.5rem;
+    }
+    .section {
+      background: white;
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+    }
+    .section h2 {
+      color: #333;
+      margin-bottom: 16px;
+      font-size: 1.5rem;
+      border-bottom: 2px solid #667eea;
+      padding-bottom: 8px;
+    }
+    .demo {
+      padding: 16px;
+      background: #f8f9fa;
+      border-radius: 8px;
+      margin: 12px 0;
+    }
+    .demo-label {
+      font-weight: bold;
+      color: #667eea;
+      margin-bottom: 8px;
+    }
+    button {
+      background: #667eea;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+      margin: 4px;
+      transition: all 0.3s;
+    }
+    button:hover {
+      background: #764ba2;
+      transform: translateY(-2px);
+    }
+    button:active {
+      transform: translateY(0);
+    }
+    .counter {
+      font-size: 3rem;
+      font-weight: bold;
+      color: #667eea;
+      text-align: center;
+      margin: 16px 0;
+    }
+    .props-display {
+      background: #e8f5e9;
+      padding: 16px;
+      border-radius: 8px;
+      margin: 12px 0;
+    }
+    .props-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px solid #c8e6c9;
+    }
+    .props-item:last-child {
+      border-bottom: none;
+    }
+    .props-key {
+      font-weight: bold;
+      color: #2e7d32;
+    }
+    .props-value {
+      color: #333;
+    }
+    .card {
+      display: inline-block;
+      background: white;
+      border-radius: 12px;
+      padding: 16px;
+      margin: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      min-width: 200px;
+    }
+    .card-avatar {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin: 0 auto 12px;
+    }
+    .card-name {
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 4px;
+    }
+    .card-role {
+      color: #666;
+      font-size: 0.9rem;
+      text-align: center;
+    }
+    .todo-item {
+      display: flex;
+      align-items: center;
+      padding: 12px;
+      background: #f8f9fa;
+      border-radius: 8px;
+      margin: 8px 0;
+    }
+    .todo-checkbox {
+      width: 20px;
+      height: 20px;
+      margin-right: 12px;
+      cursor: pointer;
+    }
+    .todo-text {
+      flex: 1;
+    }
+    .todo-text.completed {
+      text-decoration: line-through;
+      color: #999;
+    }
+    .todo-delete {
+      background: #ff4757;
+      padding: 6px 12px;
+      font-size: 0.9rem;
+    }
+    .todo-input {
+      padding: 10px;
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      font-size: 1rem;
+      width: 70%;
+      margin-right: 8px;
+    }
+    .code-box {
+      background: #282c34;
+      color: #abb2bf;
+      padding: 16px;
+      border-radius: 8px;
+      font-family: 'Monaco', 'Menlo', monospace;
+      font-size: 0.9rem;
+      overflow-x: auto;
+      margin: 12px 0;
+    }
+    .code-keyword { color: #c678dd; }
+    .code-string { color: #98c379; }
+    .code-function { color: #61afef; }
+    .code-comment { color: #5c6370; }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { useState } = React;
+
+    // ===== Demo 1: 基础组件定义 =====
+    function Greeting() {
+      return <div className="demo">
+        <div className="demo-label">基础函数组件</div>
+        <p>Hello, React! 👋</p>
+      </div>;
+    }
+
+    // ===== Demo 2: Props 传递 =====
+    function UserCard({ name, role, avatar }) {
+      return <div className="card">
+        <div className="card-avatar">{avatar || name[0]}</div>
+        <div className="card-name">{name}</div>
+        <div className="card-role">{role}</div>
+      </div>;
+    }
+
+    function PropsDemo() {
+      const users = [
+        { name: '张三', role: '前端工程师', avatar: '张' },
+        { name: '李四', role: '后端工程师', avatar: '李' },
+        { name: '王五', role: '产品经理', avatar: '王' },
+      ];
+
+      return <div className="demo">
+        <div className="demo-label">Props 传递演示</div>
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+          {users.map((user, index) => (
+            <UserCard key={index} {...user} />
+          ))}
+        </div>
+      </div>;
+    }
+
+    // ===== Demo 3: State 使用 =====
+    function Counter() {
+      const [count, setCount] = useState(0);
+
+      const increment = () => setCount(count + 1);
+      const decrement = () => setCount(count - 1);
+      const reset = () => setCount(0);
+
+      return <div className="demo">
+        <div className="demo-label">useState 计数器</div>
+        <div className="counter">{count}</div>
+        <div style={{ textAlign: 'center' }}>
+          <button onClick={decrement}>- 减</button>
+          <button onClick={reset}>重置</button>
+          <button onClick={increment}>+ 加</button>
+        </div>
+        <div className="code-box">
+          <span className="code-keyword">const</span> [count, setCount] = <span className="code-function">useState</span>(<span className="code-number">0</span>);
+        </div>
+      </div>;
+    }
+
+    // ===== Demo 4: 表单与 State =====
+    function FormDemo() {
+      const [name, setName] = useState('');
+      const [email, setEmail] = useState('');
+
+      const handleSubmit = (e) => {
+        e.preventDefault();
+        alert(`提交: ${name}, ${email}`);
+      };
+
+      return <div className="demo">
+        <div className="demo-label">表单与 State</div>
+        <form onSubmit={handleSubmit}>
+          <input 
+            type="text" 
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            placeholder="姓名"
+            className="todo-input"
+          />
+          <input 
+            type="email" 
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="邮箱"
+            className="todo-input"
+          />
+          <button type="submit">提交</button>
+        </form>
+        <div style={{ marginTop: '12px' }}>
+          <strong>实时预览：</strong> {name} - {email}
+        </div>
+      </div>;
+    }
+
+    // ===== Demo 5: Todo List =====
+    function TodoList() {
+      const [todos, setTodos] = useState([
+        { id: 1, text: '学习 React', completed: true },
+        { id: 2, text: '完成练习项目', completed: false },
+        { id: 3, text: '阅读文档', completed: false },
+      ]);
+      const [newTodo, setNewTodo] = useState('');
+
+      const addTodo = () => {
+        if (!newTodo.trim()) return;
+        setTodos([...todos, { 
+          id: Date.now(), 
+          text: newTodo, 
+          completed: false 
+        }]);
+        setNewTodo('');
+      };
+
+      const toggleTodo = (id) => {
+        setTodos(todos.map(todo => 
+          todo.id === id ? { ...todo, completed: !todo.completed } : todo
+        ));
+      };
+
+      const deleteTodo = (id) => {
+        setTodos(todos.filter(todo => todo.id !== id));
+      };
+
+      return <div className="demo">
+        <div className="demo-label">Todo List 完整示例</div>
+        <div style={{ marginBottom: '16px' }}>
+          <input 
+            type="text"
+            value={newTodo}
+            onChange={(e) => setNewTodo(e.target.value)}
+            onKeyPress={(e) => e.key === 'Enter' && addTodo()}
+            placeholder="添加新任务..."
+            className="todo-input"
+          />
+          <button onClick={addTodo}>添加</button>
+        </div>
+        <div>
+          {todos.map(todo => (
+            <div key={todo.id} className="todo-item">
+              <input 
+                type="checkbox"
+                checked={todo.completed}
+                onChange={() => toggleTodo(todo.id)}
+                className="todo-checkbox"
+              />
+              <span className={`todo-text ${todo.completed ? 'completed' : ''}`}>
+                {todo.text}
+              </span>
+              <button 
+                className="todo-delete"
+                onClick={() => deleteTodo(todo.id)}
+              >
+                删除
+              </button>
+            </div>
+          ))}
+        </div>
+      </div>;
+    }
+
+    // ===== 主应用 =====
+    function App() {
+      return <div className="container">
+        <h1>🧩 React 组件、Props 与 State 演示</h1>
+        
+        <div className="section">
+          <h2>1. 基础组件</h2>
+          <Greeting />
+        </div>
+
+        <div className="section">
+          <h2>2. Props 外部数据</h2>
+          <PropsDemo />
+        </div>
+
+        <div className="section">
+          <h2>3. State 内部状态</h2>
+          <Counter />
+        </div>
+
+        <div className="section">
+          <h2>4. 表单处理</h2>
+          <FormDemo />
+        </div>
+
+        <div className="section">
+          <h2>5. 实战：Todo List</h2>
+          <TodoList />
+        </div>
+      </div>;
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<App />);
+  </script>
+</body>
+</html>

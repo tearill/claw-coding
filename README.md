@@ -431,6 +431,17 @@
 - **路径**: `learning/07-react/day1-intro-jsx/`
 - **笔记**: `learning/2026-04-20-周一-React简介与JSX.md`
 
+#### ✅ Week 7 Day 2 (2026-04-21 周二)
+- **主题**: React 组件、Props、State
+- **内容**:
+  - 组件定义：函数组件 vs 类组件
+  - Props 外部数据传递：单向数据流、只读特性
+  - State 内部状态：useState Hook 的使用
+  - 事件处理：onClick、onChange 等驼峰命名
+- **练习**: 交互式演示页面（计数器、表单、Todo List）
+- **路径**: `learning/07-react/day2-component-props-state/`
+- **笔记**: `learning/2026-04-21-周二-React组件Props与State.md`
+
 ```
 claw-coding/
 ├── learning/              # 学习练习代码
