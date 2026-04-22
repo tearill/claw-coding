@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React 事件处理与条件渲染</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        h1 {
+            color: white;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+        .demo-section {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        .demo-title {
+            color: #333;
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #667eea;
+        }
+        .counter-box {
+            text-align: center;
+            padding: 20px;
+        }
+        .count-display {
+            font-size: 4em;
+            font-weight: bold;
+            color: #667eea;
+            margin: 20px 0;
+        }
+        .btn {
+            padding: 12px 30px;
+            font-size: 1.1em;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin: 5px;
+            transition: all 0.3s ease;
+        }
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+        .btn-primary:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+        }
+        .btn-danger {
+            background: #f56565;
+            color: white;
+        }
+        .btn-danger:hover {
+            background: #e53e3e;
+        }
+        .btn-success {
+            background: #48bb78;
+            color: white;
+        }
+        .btn-success:hover {
+            background: #38a169;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #555;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            font-size: 1em;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            transition: border-color 0.3s;
+        }
+        .form-group input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        .todo-list {
+            list-style: none;
+        }
+        .todo-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 15px;
+            background: #f7fafc;
+            margin-bottom: 8px;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+        .todo-item:hover {
+            background: #edf2f7;
+        }
+        .todo-item.completed {
+            background: #c6f6d5;
+            text-decoration: line-through;
+            opacity: 0.7;
+        }
+        .todo-text {
+            flex: 1;
+        }
+        .todo-actions button {
+            margin-left: 8px;
+        }
+        .toggle-section {
+            padding: 20px;
+            background: #f7fafc;
+            border-radius: 10px;
+            margin-top: 15px;
+        }
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .tab {
+            padding: 10px 20px;
+            background: #e2e8f0;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .tab.active {
+            background: #667eea;
+            color: white;
+        }
+        .content-box {
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            min-height: 100px;
+        }
+        .login-form {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        .login-form .form-group input {
+            border-color: #e2e8f0;
+        }
+        .error-message {
+            color: #f56565;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+        .success-message {
+            color: #48bb78;
+            padding: 15px;
+            background: #c6f6d5;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+        code {
+            background: #2d3748;
+            color: #68d391;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-family: 'Monaco', 'Courier New', monospace;
+        }
+        pre {
+            background: #1a202c;
+            color: #e2e8f0;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+    
+    <script type="text/babel">
+        // ========== 示例 1: 基础事件处理 - 计数器 ==========
+        function Counter() {
+            const [count, setCount] = React.useState(0);
+            
+            const handleIncrement = () => setCount(count + 1);
+            const handleDecrement = () => setCount(count - 1);
+            const handleReset = () => setCount(0);
+            
+            return (
+                <div className="demo-section">
+                    <h2 className="demo-title">示例 1: 基础事件处理 - 计数器</h2>
+                    <div className="counter-box">
+                        <div className="count-display">{count}</div>
+                        <button className="btn btn-primary" onClick={handleIncrement}>+1</button>
+                        <button className="btn btn-danger" onClick={handleDecrement}>-1</button>
+                        <button className="btn btn-success" onClick={handleReset}>重置</button>
+                    </div>
+                    <p style={{marginTop: '15px', color: '#666'}}>
+                        <strong>核心概念：</strong>使用 <code>onClick</code> 属性绑定事件处理函数
+                    </p>
+                </div>
+            );
+        }
+        
+        // ========== 示例 2: 表单事件处理 ==========
+        function FormExample() {
+            const [name, setName] = React.useState('');
+            const [email, setEmail] = React.useState('');
+            const [submitted, setSubmitted] = React.useState(false);
+            
+            const handleSubmit = (e) => {
+                e.preventDefault(); // 阻止表单默认提交行为
+                if (name && email) {
+                    setSubmitted(true);
+                }
+            };
+            
+            const handleNameChange = (e) => setName(e.target.value);
+            const handleEmailChange = (e) => setEmail(e.target.value);
+            
+            if (submitted) {
+                return (
+                    <div className="demo-section">
+                        <h2 className="demo-title">示例 2: 表单事件处理</h2>
+                        <div className="success-message">
+                            <h3>✅ 提交成功！</h3>
+                            <p>姓名: {name}</p>
+                            <p>邮箱: {email}</p>
+                            <button className="btn btn-primary" style={{marginTop: '15px'}} onClick={() => setSubmitted(false)}>
+                                重新填写
+                            </button>
+                        </div>
+                    </div>
+                );
+            }
+            
+            return (
+                <div className="demo-section">
+                    <h2 className="demo-title">示例 2: 表单事件处理</h2>
+                    <form onSubmit={handleSubmit}>
+                        <div className="form-group">
+                            <label>姓名:</label>
+                            <input 
+                                type="text" 
+                                value={name}
+                                onChange={handleNameChange}
+                                placeholder="请输入姓名"
+                            />
+                        </div>
+                        <div className="form-group">
+                            <label>邮箱:</label>
+                            <input 
+                                type="email" 
+                                value={email}
+                                onChange={handleEmailChange}
+                                placeholder="请输入邮箱"
+                            />
+                        </div>
+                        <button type="submit" className="btn btn-primary">提交</button>
+                    </form>
+                    <p style={{marginTop: '15px', color: '#666'}}>
+                        <strong>核心概念：</strong><br/>
+                        - <code>onChange</code>: 输入时触发<br/>
+                        - <code>onSubmit</code>: 表单提交时触发<br/>
+                        - <code>e.preventDefault()</code>: 阻止默认行为
+                    </p>
+                </div>
+            );
+        }
+        
+        // ========== 示例 3: Todo List ==========
+        function TodoList() {
+            const [todos, setTodos] = React.useState([
+                { id: 1, text: '学习 React 事件处理', completed: true },
+                { id: 2, text: '学习条件渲染', completed: false },
+                { id: 3, text: '完成练习项目', completed: false }
+            ]);
+            const [newTodo, setNewTodo] = React.useState('');
+            
+            const addTodo = () => {
+                if (newTodo.trim()) {
+                    setTodos([
+                        ...todos,
+                        { id: Date.now(), text: newTodo, completed: false }
+                    ]);
+                    setNewTodo('');
+                }
+            };
+            
+            const toggleTodo = (id) => {
+                setTodos(todos.map(todo => 
+                    todo.id === id ? { ...todo, completed: !todo.completed } : todo
+                ));
+            };
+            
+            const deleteTodo = (id) => {
+                setTodos(todos.filter(todo => todo.id !== id));
+            };
+            
+            const handleKeyPress = (e) => {
+                if (e.key === 'Enter') {
+                    addTodo();
+                }
+            };
+            
+            return (
+                <div className="demo-section">
+                    <h2 className="demo-title">示例 3: Todo List 事件处理</h2>
+                    <div className="form-group">
+                        <input 
+                            type="text"
+                            value={newTodo}
+                            onChange={(e) => setNewTodo(e.target.value)}
+                            onKeyPress={handleKeyPress}
+                            placeholder="添加新任务..."
+                        />
+                        <button className="btn btn-primary" onClick={addTodo} style={{marginTop: '10px'}}>
+                            添加
+                        </button>
+                    </div>
+                    <ul className="todo-list">
+                        {todos.map(todo => (
+                            <li key={todo.id} className={`todo-item ${todo.completed ? 'completed' : ''}`}>
+                                <span className="todo-text" onClick={() => toggleTodo(todo.id)}>
+                                    {todo.text}
+                                </span>
+                                <div className="todo-actions">
+                                    <button 
+                                        className="btn btn-success" 
+                                        onClick={() => toggleTodo(todo.id)}
+                                    >
+                                        {todo.completed ? '✓' : '○'}
+                                    </button>
+                                    <button 
+                                        className="btn btn-danger" 
+                                        onClick={() => deleteTodo(todo.id)}
+                                    >
+                                        删除
+                                    </button>
+                                </div>
+                            </li>
+                        ))}
+                    </ul>
+                    <p style={{marginTop: '15px', color: '#666'}}>
+                        <strong>核心概念：</strong><br/>
+                        - 列表渲染使用 <code>map</code><br/>
+                        - 每个元素需要唯一的 <code>key</code><br/>
+                        - 事件处理函数中更新 state
+                    </p>
+                </div>
+            );
+        }
+        
+        // ========== 示例 4: 条件渲染 ==========
+        function ConditionalRendering() {
+            const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+            const [showContent, setShowContent] = React.useState(false);
+            
+            return (
+                <div className="demo-section">
+                    <h2 className="demo-title">示例 4: 条件渲染</h2>
+                    
+                    <div className="tabs">
+                        <button 
+                            className={`tab ${isLoggedIn ? 'active' : ''}`}
+                            onClick={() => setIsLoggedIn(true)}
+                        >
+                            已登录
+                        </button>
+                        <button 
+                            className={`tab ${!isLoggedIn ? 'active' : ''}`}
+                            onClick={() => setIsLoggedIn(false)}
+                        >
+                            未登录
+                        </button>
+                    </div>
+                    
+                    {/* 方式1: 三元运算符 */}
+                    {isLoggedIn ? (
+                        <div className="content-box">
+                            <h3>欢迎回来，用户！</h3>
+                            <button className="btn btn-danger" onClick={() => setIsLoggedIn(false)}>
+                                退出登录
+                            </button>
+                        </div>
+                    ) : (
+                        <div className="content-box">
+                            <h3>请先登录</h3>
+                            <button className="btn btn-primary" onClick={() => setIsLoggedIn(true)}>
+                                登录
+                            </button>
+                        </div>
+                    )}
+                    
+                    <div className="toggle-section">
+                        <button className="btn btn-primary" onClick={() => setShowContent(!showContent)}>
+                            {showContent ? '隐藏' : '显示'} 内容
+                        </button>
+                        
+                        {/* 方式2: 逻辑与运算符 && */}
+                        {showContent && (
+                            <div className="content-box" style={{marginTop: '15px'}}>
+                                <h3>这里是条件渲染的内容！</h3>
+                                <p>使用 <code>&&</code> 运算符，当条件为 true 时渲染内容</p>
+                            </div>
+                        )}
+                    </div>
+                    
+                    <p style={{marginTop: '15px', color: '#666'}}>
+                        <strong>条件渲染方式：</strong><br/>
+                        - <code>条件 ? true : false</code> 三元运算符<br/>
+                        - <code>{"条件 && 内容"}</code> 逻辑与（适合隐藏/显示）<br/>
+                        - <code>{"!条件 && 内容"}</code> 取反（适合登录/未登录切换）
+                    </p>
+                </div>
+            );
+        }
+        
+        // ========== 示例 5: 标签页切换 ==========
+        function TabsExample() {
+            const [activeTab, setActiveTab] = React.useState('home');
+            
+            const tabs = [
+                { id: 'home', label: '首页', content: '欢迎来到首页！这是首页的内容。' },
+                { id: 'about', label: '关于', content: '这是一个关于我们的页面。' },
+                { id: 'contact', label: '联系', content: '联系我们：example@email.com' }
+            ];
+            
+            return (
+                <div className="demo-section">
+                    <h2 className="demo-title">示例 5: 标签页切换</h2>
+                    
+                    <div className="tabs">
+                        {tabs.map(tab => (
+                            <button
+                                key={tab.id}
+                                className={`tab ${activeTab === tab.id ? 'active' : ''}`}
+                                onClick={() => setActiveTab(tab.id)}
+                            >
+                                {tab.label}
+                            </button>
+                        ))}
+                    </div>
+                    
+                    <div className="content-box">
+                        {tabs.map(tab => (
+                            activeTab === tab.id && <p key={tab.id}>{tab.content}</p>
+                        ))}
+                    </div>
+                    
+                    <p style={{marginTop: '15px', color: '#666'}}>
+                        <strong>核心概念：</strong><br/>
+                        - 使用 state 保存当前激活的标签<br/>
+                        - 根据 state 值条件渲染对应的内容
+                    </p>
+                </div>
+            );
+        }
+        
+        // ========== 主应用 ==========
+        function App() {
+            return (
+                <div className="container">
+                    <h1>🐛 React 事件处理与条件渲染</h1>
+                    <Counter />
+                    <FormExample />
+                    <TodoList />
+                    <ConditionalRendering />
+                    <TabsExample />
+                </div>
+            );
+        }
+        
+        ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+    </script>
+</body>
+</html>

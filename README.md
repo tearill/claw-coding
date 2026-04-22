@@ -442,6 +442,17 @@
 - **路径**: `learning/07-react/day2-component-props-state/`
 - **笔记**: `learning/2026-04-21-周二-React组件Props与State.md`
 
+#### ✅ Week 7 Day 3 (2026-04-22 周三)
+- **主题**: React 事件处理与条件渲染
+- **内容**:
+  - 事件处理：onClick、onChange、onSubmit
+  - 表单事件：e.preventDefault()、受控组件
+  - 条件渲染：三元运算符、逻辑与运算符
+  - 标签页切换实战
+- **练习**: 交互式演示页面（计数器、表单、Todo List、条件渲染）
+- **路径**: `learning/07-react/day3-event-conditional/`
+- **笔记**: `learning/2026-04-22-周三-React事件处理与条件渲染.md`
+
 ```
 claw-coding/
 ├── learning/              # 学习练习代码
