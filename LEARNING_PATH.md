@@ -55,14 +55,14 @@
 
 ### 3.1 React 入门
 - [x] JSX 语法
-- [ ] 组件化开发
-- [ ] Props 与 State
-- [ ] 事件处理
-- [ ] 条件渲染与列表渲染
+- [x] 组件化开发
+- [x] Props 与 State
+- [x] 事件处理
+- [x] 条件渲染与列表渲染
 - [ ] **实践**：天气预报 React 版
 
 ### 3.2 React 进阶
-- [ ] Hooks (useState, useEffect, useContext)
+- [x] Hooks (useState, useEffect, useContext)
 - [ ] 自定义 Hook
 - [ ] 组件通信
 - [ ] 路由 React Router

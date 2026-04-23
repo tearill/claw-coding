@@ -453,6 +453,16 @@
 - **路径**: `learning/07-react/day3-event-conditional/`
 - **笔记**: `learning/2026-04-22-周三-React事件处理与条件渲染.md`
 
+#### ✅ Week 7 Day 4 (2026-04-23 周四)
+- **主题**: React Hooks 基础 - useState 与 useEffect
+- **内容**:
+  - useState: 状态管理基础、函数式更新
+  - useEffect: 副作用处理、依赖数组、清理函数
+  - 常见用例：计数器、表单、列表、时钟、数据获取
+- **练习**: 交互式演示页面（8个综合示例）
+- **路径**: `learning/07-react/day4-hooks-usestate-useeffect/`
+- **笔记**: `learning/2026-04-23-周四-ReactHooks基础.md`
+
 ```
 claw-coding/
 ├── learning/              # 学习练习代码
