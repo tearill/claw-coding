@@ -59,6 +59,7 @@
 - [x] Props 与 State
 - [x] 事件处理
 - [x] 条件渲染与列表渲染
+- [x] **Hooks 基础** (useState, useEffect) - 2026-04-24
 - [ ] **实践**：天气预报 React 版
 
 ### 3.2 React 进阶

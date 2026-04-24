@@ -454,6 +454,15 @@
 - **笔记**: `learning/2026-04-22-周三-React事件处理与条件渲染.md`
 
 #### ✅ Week 7 Day 4 (2026-04-23 周四)
+#### ⏳ Week 7 Day 5 (2026-04-24 周五) - 今日学习
+- **主题**: React Hooks 进阶 - useRef / useCallback / useMemo
+- **内容**:
+  - useRef: 引用 DOM、持久化值
+  - useCallback: 缓存函数
+  - useMemo: 缓存计算结果
+- **练习**: 交互式演示页面
+- **路径**: `learning/07-react/day4-hooks-usestate-useeffect/`
+- **笔记**: `learning/2026-04-24-周五-ReactHooks基础.md`
 - **主题**: React Hooks 基础 - useState 与 useEffect
 - **内容**:
   - useState: 状态管理基础、函数式更新
