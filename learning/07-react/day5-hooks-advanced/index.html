@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>React Hooks 进阶 - useRef/useCallback/useMemo</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+    h1 { color: #333; border-bottom: 2px solid #61dafb; padding-bottom: 10px; }
+    h2 { color: #555; margin-top: 30px; }
+    .example {
+      background: white;
+      border-radius: 8px;
+      padding: 20px;
+      margin: 20px 0;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .demo-box {
+      background: #f0f0f0;
+      padding: 15px;
+      border-radius: 4px;
+      margin: 10px 0;
+    }
+    button {
+      background: #61dafb;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 4px;
+      cursor: pointer;
+      margin: 5px;
+      font-size: 14px;
+    }
+    button:hover { background: #4fa8c7; }
+    button.secondary { background: #e0e0e0; }
+    input {
+      padding: 8px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      margin: 5px;
+      width: 200px;
+    }
+    pre {
+      background: #1e1e1e;
+      color: #d4d4d4;
+      padding: 15px;
+      border-radius: 4px;
+      overflow-x: auto;
+    }
+    .log {
+      background: #1e1e1e;
+      color: #4ec9b0;
+      padding: 10px;
+      border-radius: 4px;
+      max-height: 200px;
+      overflow-y: auto;
+      font-family: monospace;
+    }
+    .counter { font-size: 48px; text-align: center; color: #61dafb; }
+    .render-count { color: #888; font-size: 12px; }
+    table { width: 100%; border-collapse: collapse; margin: 10px 0; }
+    th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+    th { background: #f5f5f5; }
+    .highlight { background: #fff3cd; padding: 2px 4px; }
+  </style>
+</head>
+<body>
+
+  <h1>🐈‍⬛ React Hooks 进阶</h1>
+  <p>useRef / useCallback / useMemo 演示</p>
+
+  <!-- 示例 1: useRef 基础 - DOM 引用 -->
+  <div class="example">
+    <h2>1. useRef 基础 - DOM 引用</h2>
+    <pre>const inputRef = useRef(null);
+const inputRef = useRef(null);
+
+// 使用
+&lt;div ref={inputRef}&gt;...&lt;/div&gt;
+
+// 获取 DOM
+inputRef.current.focus();
+console.log(inputRef.current.value);</pre>
+    <div class="demo-box">
+      <input type="text" id="demo1-input" placeholder="点击按钮我会自动聚焦" value="Hello useRef">
+      <button onclick="focusInput()">聚焦输入框</button>
+      <button onclick="logInputValue()">打印值</button>
+    </div>
+  </div>
+
+  <!-- 示例 2: useRef 变量引用 -->
+  <div class="example">
+    <h2>2. useRef 变量引用 - 跨渲染保持数据</h2>
+    <pre>const countRef = useRef(0);
+// 修改不触发重新渲染
+countRef.current += 1;
+console.log(countRef.current);</pre>
+    <div class="demo-box">
+      <div>点击次数(不渲染): <span id="click-count">0</span></div>
+      <button onclick="incrementRef()">点击累加</button>
+      <button onclick="getRefValue()">获取当前值</button>
+    </div>
+  </div>
+
+  <!-- 示例 3: useCallback 基础 -->
+  <div class="example">
+    <h2>3. useCallback - 记忆化回调函数</h2>
+    <pre>// 依赖变化时更新函数引用
+const memoizedCallback = useCallback(() => {
+  setCount(c => c + 1);
+}, []); // 空依赖：函数永远不变
+
+const callbackWithDeps = useCallback((x) => {
+  return x * 2;
+}, [factor]); // factor 变化时更新</pre>
+    <div class="demo-box">
+      <div>计数器: <span id="callback-count">0</span></div>
+      <button onclick="handleCallbackClick()">点击(useCallback)</button>
+      <button onclick="handlePlainClick()">点击(普通函数)</button>
+    </div>
+  </div>
+
+  <!-- 示例 4: useMemo 基础 -->
+  <div class="example">
+    <h2>4. useMemo - 记忆化计算值</h2>
+    <pre>// 依赖变化时重新计算
+const expensiveValue = useMemo(() => {
+  return items.filter(...).sort(...);
+}, [items, filter]);</pre>
+    <div class="demo-box">
+      <div>计算复杂度：<span id="calc-times">0</span></div>
+      <button onclick="addItem()">添加数据</button>
+      <button onclick="filterItems()">过滤(useMemo)</button>
+      <button onclick="filterItemsPlain()">过滤(普通)</button>
+    </div>
+  </div>
+
+  <!-- 示例 5: 性能对比演示 -->
+  <div class="example">
+    <h2>5. 性能对比演示</h2>
+    <pre>// 未优化：每次父组件渲染，子组件都重渲染
+const Child = ({ onClick, data }) => {
+  console.log('Child 渲染');
+  return &lt;button onClick={onClick}&gt;{data.title}&lt;/button&gt;;
+};
+
+// 优化：React.memo + useCallback
+const Child = React.memo(({ onClick, data }) => {
+  console.log('Child 渲染');
+  return &lt;button onClick={onClick}&gt;{data.title}&lt;/button&gt;;
+});
+
+const handleClick = useCallback(() => {...}, []);</pre>
+    <div class="demo-box">
+      <button onclick="simulateParentRender()">父组件重渲染</button>
+      <button onclick="checkChildRender()">检查子组件渲染</button>
+      <div id="render-log" class="log">渲染日志...</div>
+    </div>
+  </div>
+
+  <!-- 示例 6: 综合示例 - 计数器 -->
+  <div class="example">
+    <h2>6. 综合示例：计数器</h2>
+    <pre>// 使用所有 Hooks 的综合示例
+const [count, setCount] = useState(0);
+const countRef = useRef(0);
+const doubleCount = useMemo(() => count * 2, [count]);
+const handleIncrement = useCallback(() => {
+  setCount(c => c + 1);
+  countRef.current += 1;
+}, []);</pre>
+    <div class="demo-box">
+      <div class="counter" id="counter-value">0</div>
+      <div>doubleCount (useMemo): <span id="double-value">0</span></div>
+      <div>原始值 (useRef): <span id="ref-value">0</span></div>
+      <button onclick="incrementCounter()">+1</button>
+      <button onclick="resetCounter()">重置</button>
+    </div>
+  </div>
+
+  <script>
+    // 模拟 React Hooks
+    // 在实际项目中，这些由 React 库提供
+    
+    // === 示例 1: useRef DOM 引用 ===
+    function focusInput() {
+      const input = document.getElementById('demo1-input');
+      input.focus();
+    }
+    function logInputValue() {
+      const input = document.getElementById('demo1-input');
+      console.log('输入框值:', input.value);
+    }
+
+    // === 示例 2: useRef 变量引用 ===
+    let countRef = { current: 0 };
+    function incrementRef() {
+      countRef.current += 1;
+      document.getElementById('click-count').textContent = countRef.current;
+    }
+    function getRefValue() {
+      alert('当前值: ' + countRef.current);
+    }
+
+    // === 示例 3: useCallback ===
+    let callbackCount = 0;
+    let plainCount = 0;
+    function handleCallbackClick() {
+      callbackCount++;
+      document.getElementById('callback-count').textContent = callbackCount;
+    }
+    function handlePlainClick() {
+      plainCount++;
+      document.getElementById('callback-count').textContent = callbackCount + plainCount;
+    }
+
+    // === 示例 4: useMemo 计算 ===
+    let items = [1, 2, 3, 4, 5];
+    let calcTimes = 0;
+    function addItem() {
+      items.push(items.length + 1);
+    }
+    function filterItems() {
+      calcTimes++;
+      const filtered = items.filter(x => x > 2); // 模拟 useMemo
+      document.getElementById('calc-times').textContent = calcTimes;
+      console.log('useMemo 计算:', filtered);
+    }
+    function filterItemsPlain() {
+      // 模拟普通计算，每次都重新计算
+      const filtered = items.filter(x => x > 2);
+      console.log('普通计算:', filtered);
+    }
+
+    // === 示例 5: 性能对比 ===
+    let parentRenderCount = 0;
+    let childRenderCount = 0;
+    function simulateParentRender() {
+      parentRenderCount++;
+      childRenderCount++; // 未优化时子组件也会渲染
+    }
+    function checkChildRender() {
+      alert(`父渲染: ${parentRenderCount}, 子渲染: ${childRenderCount}`);
+    }
+
+    // === 示例 6: 综合计数器 ===
+    let counterState = 0;
+    let counterRef = 0;
+    function incrementCounter() {
+      counterState++;
+      counterRef++;
+      document.getElementById('counter-value').textContent = counterState;
+      document.getElementById('double-value').textContent = counterState * 2;
+      document.getElementById('ref-value').textContent = counterRef;
+    }
+    function resetCounter() {
+      counterState = 0;
+      counterRef = 0;
+      document.getElementById('counter-value').textContent = 0;
+      document.getElementById('double-value').textContent = 0;
+      document.getElementById('ref-value').textContent = 0;
+    }
+  </script>
+
+</body>
+</html>

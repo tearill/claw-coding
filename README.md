@@ -454,6 +454,16 @@
 - **笔记**: `learning/2026-04-22-周三-React事件处理与条件渲染.md`
 
 #### ✅ Week 7 Day 4 (2026-04-23 周四)
+#### ✅ Week 7 Day 5 (2026-04-25 周六)
+- **主题**: React Hooks 进阶 - useRef / useCallback / useMemo
+- **内容**:
+  - useRef: DOM引用、变量引用、forwardRef
+  - useCallback: 记忆化回调函数
+  - useMemo: 记忆化计算值、性能优化
+- **练习**: 交互式演示页面
+- **路径**: `learning/07-react/day5-hooks-advanced/`
+- **笔记**: `learning/2026-04-25-周六-ReactHooks进阶.md`
+
 #### ⏳ Week 7 Day 5 (2026-04-24 周五) - 今日学习
 - **主题**: React Hooks 进阶 - useRef / useCallback / useMemo
 - **内容**:
