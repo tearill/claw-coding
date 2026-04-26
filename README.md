@@ -11,7 +11,7 @@
 | Week 3 | JavaScript 进阶 & TypeScript | 🔄 进行中 |
 | Week 4 | 浏览器原理与网络 | ✅ 已完成 |
 | Week 5 | Vue 3 核心与生态 | ✅ 已完成 |
-| Week 6 | Vue 3 生态与组件化 | 🔄 进行中 |
+| Week 6 | Vue 3 生态与组件化 | ✅ 已完成 |
 | Week 7-8 | React 核心与生态 | 🔄 进行中 |
 | Week 9-10 | CSS 框架与实战 | ⏳ |
 | Week 11-16 | 底层原理 + Node.js | ⏳ |
@@ -464,15 +464,24 @@
 - **路径**: `learning/07-react/day5-hooks-advanced/`
 - **笔记**: `learning/2026-04-25-周六-ReactHooks进阶.md`
 
-#### ⏳ Week 7 Day 5 (2026-04-24 周五) - 今日学习
+#### ✅ Week 7 Day 5 (2026-04-25 周六)
 - **主题**: React Hooks 进阶 - useRef / useCallback / useMemo
 - **内容**:
-  - useRef: 引用 DOM、持久化值
-  - useCallback: 缓存函数
-  - useMemo: 缓存计算结果
+  - useRef: DOM引用、变量引用、forwardRef
+  - useCallback: 记忆化回调函数
+  - useMemo: 记忆化计算值、性能优化
 - **练习**: 交互式演示页面
-- **路径**: `learning/07-react/day4-hooks-usestate-useeffect/`
-- **笔记**: `learning/2026-04-24-周五-ReactHooks基础.md`
+- **路径**: `learning/07-react/day5-hooks-advanced/`
+- **笔记**: `learning/2026-04-25-周六-ReactHooks进阶.md`
+
+#### ✅ Week 7 总结 (2026-04-26 周日)
+- **主题**: Week 7 React 核心总结 + 下周预习
+- **内容**:
+  - React 核心概念总结（组件化、声明式、单项数据流）
+  - React vs Vue 3 对比（JSX vs Template、Hooks vs Composables）
+  - useState/useEffect/useRef/useMemo/useCallback 深入理解
+  - Week 8 预习：Context API / Redux Toolkit / Zustand
+- **笔记**: `learning/2026-04-26-周日-Week7总结与下周预习.md`
 - **主题**: React Hooks 基础 - useState 与 useEffect
 - **内容**:
   - useState: 状态管理基础、函数式更新

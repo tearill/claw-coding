@@ -64,7 +64,7 @@
 - [ ] **实践**：天气预报 React 版
 
 ### 3.2 React 进阶
-- [x] Hooks (useState, useEffect, useContext)
+- [x] Hooks (useState, useEffect, useContext) - Week 7
 - [ ] 自定义 Hook
 - [ ] 组件通信
 - [ ] 路由 React Router
