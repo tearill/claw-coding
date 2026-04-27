@@ -482,6 +482,17 @@
   - useState/useEffect/useRef/useMemo/useCallback 深入理解
   - Week 8 预习：Context API / Redux Toolkit / Zustand
 - **笔记**: `learning/2026-04-26-周日-Week7总结与下周预习.md`
+
+#### ✅ Week 8 Day 1 (2026-04-27 周一)
+- **主题**: React Context API 状态共享
+- **内容**:
+  - Context API 原理：createContext、Provider、useContext
+  - 主题切换器实战（深色/浅色模式）
+  - 用户认证状态管理（登录/登出）
+  - 自定义 Hook 封装（最佳实践）
+- **练习**: 交互式演示页面
+- **路径**: `learning/07-react/day6-context/`
+- **笔记**: `learning/2026-04-27-周一-ReactContextAPI状态共享.md`
 - **主题**: React Hooks 基础 - useState 与 useEffect
 - **内容**:
   - useState: 状态管理基础、函数式更新
